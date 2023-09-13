@@ -2,10 +2,16 @@ const todoList = document.querySelector('[data-key="todos"]')
 const form = document.querySelector('form')
 const input = document.querySelector('input')
 
-const todoData = []
+const todoData = JSON.parse(localStorage.getItem('todos')) || []
+todoData.forEach(todo => {
+    const li = document.createElement('li')
+    li.innerText = todo
+    todoList.appendChild(li)
+});
 
 const addTodo = (todoText) => {
     todoData.push(todoText)
+    localStorage.setItem('todos', JSON.stringify(todoData))
 
     const li = document.createElement('li')
     li.innerText = todoText
