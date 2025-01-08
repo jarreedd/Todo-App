@@ -1,27 +1,32 @@
-const todoList = document.querySelector('[data-key="todos"]')
-const form = document.querySelector('form')
-const input = document.querySelector('input')
+const todoList = document.querySelector('[data-key="todos"]');
+const form = document.querySelector("form");
+const input = document.querySelector("input");
 
-const todoData = JSON.parse(localStorage.getItem('todos')) || []
-todoData.forEach(todo => {
-    const li = document.createElement('li')
-    li.innerText = todo
-    todoList.appendChild(li)
-});
+const todoData = JSON.parse(localStorage.getItem("todos")) || [];
 
-const addTodo = (todoText) => {
-    todoData.push(todoText)
-    localStorage.setItem('todos', JSON.stringify(todoData))
+function createToDoList() {
+    todoList.innerHTML = "";
 
-    const li = document.createElement('li')
-    li.innerText = todoText
-    todoList.appendChild(li)
+    todoData.forEach((todo) => {
+        const li = document.createElement("li");
+        li.innerText = todo;
+        todoList.appendChild(li);
+    });
 }
 
-const formHandler = (event) => {
-    event.preventDefault()
-    addTodo(input.value)
-    input.value = ''
+function addTodo(todoText) {
+    todoData.unshift(todoText);
+    localStorage.setItem("todos", JSON.stringify(todoData));
+
+    createToDoList();
 }
 
-form.addEventListener('submit', formHandler)
+function formHandler(event) {
+    event.preventDefault();
+    addTodo(input.value);
+    input.value = "";
+}
+
+createToDoList();
+
+form.addEventListener("submit", formHandler);
