@@ -1,6 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #808080;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    
+    h1 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #efefef;
+    }
+}
+
+form {
+    margin: 1rem;
+}
+
 ul {
     list-style: none;
     padding: 0;
+    margin: 1rem;
 
     li {
         margin: 0px 0px 8px 32px;
