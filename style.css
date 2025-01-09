@@ -1,0 +1,29 @@
+ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+        margin: 0px 0px 8px 8px;
+        cursor: pointer;
+        position: relative;
+        font-size: 1rem;
+
+        span {
+            position: absolute;
+            right: 0;
+
+            width: 18px;
+            height: 18px;
+            font-size: 24px;
+
+            line-height: 18px;
+            text-align: center;
+        }
+
+        span:hover {
+            background-color: #efefef;
+            border-radius: 2px;
+            border: 1px solid black;
+        }
+    }
+}
