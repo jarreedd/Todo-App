@@ -3,7 +3,7 @@ ul {
     padding: 0;
 
     li {
-        margin: 0px 0px 8px 8px;
+        margin: 0px 0px 8px 32px;
         cursor: pointer;
         position: relative;
         font-size: 1rem;
@@ -25,5 +25,25 @@ ul {
             border-radius: 2px;
             border: 1px solid black;
         }
+    }
+
+    li::before {
+        content: '';
+        position: absolute;
+        height: 18px;
+        width: 18px;
+        background-image: url(img/unchecked.png);
+        background-size: cover;
+        background-position: center;
+        left: -24px;
+    }
+
+    li.checked {
+        color: #808080;
+        text-decoration: line-through;
+    }
+
+    li.checked::before {
+        background-image: url(img/checked.png);
     }
 }

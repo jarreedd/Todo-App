@@ -24,6 +24,10 @@ function formHandler(event) {
 function taskClickHandler(event) {
     event.preventDefault();
 
+    if (event.target.tagName === "LI") {
+        event.target.classList.toggle("checked");
+    }
+
     if (event.target.tagName === "SPAN") {
         event.target.parentElement.remove();
     }
