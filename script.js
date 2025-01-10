@@ -11,6 +11,12 @@ function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+function resetIndex() {
+    document.querySelectorAll(".tasks-list li").forEach((li, index) => {
+        li.dataset.index = index;
+    });
+}
+
 function formHandler(event) {
     event.preventDefault();
 
@@ -52,12 +58,13 @@ function taskClickHandler(event) {
     if (event.target.tagName === "SPAN") {
         // update state
         let index = event.target.parentElement.getAttribute("data-index");
-        tasks.splice(index);
+        tasks.splice(index, 1);
 
         saveTasks();
 
         // update ui
         event.target.parentElement.remove();
+        resetIndex();
     }
 }
 
