@@ -11,9 +11,55 @@ function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function resetIndex() {
-    document.querySelectorAll(".tasks-list li").forEach((li, index) => {
+function createTasks() {
+    taskList.innerHTML = "";
+
+    tasks.forEach((task, index) => {
+        // create task
+        const li = document.createElement("li");
+        li.className = "task";
         li.dataset.index = index;
+        taskList.appendChild(li);
+
+        // create checkboxes
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `task_${index + 1}`;
+        checkbox.checked = task.isChecked ? true : false;
+        checkbox.dataset.index = index;
+        li.appendChild(checkbox);
+
+        const custom_checkbox = document.createElement("label");
+        custom_checkbox.className = "custom-checkbox";
+        custom_checkbox.setAttribute("for", `task_${index + 1}`);
+        custom_checkbox.innerHTML = /** icon svg */ `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path 
+                    d="M16.8 8.40002L9.64043 15.6L7.19995 13.1457" 
+                    stroke="black" stroke-width="2" stroke-linecap="roun stroke-linejoin="round"
+                />
+            </svg>
+        `;
+        li.appendChild(custom_checkbox);
+
+        // create task text
+        const task_text = document.createElement("label");
+        task_text.className = "task__text";
+        task_text.setAttribute("for", `task_${index + 1}`);
+        task_text.innerText = task.text;
+        li.appendChild(task_text);
+
+        // create task delete button
+        const delete_btn = document.createElement("button");
+        delete_btn.className = "delete__btn";
+        delete_btn.innerHTML = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M4 6.17647H20M9 3H15M10 16.7647V10.4118M14 16.7647V10.4118M15.5 21H8.5C7.39543 21 6.5 20.0519 6.5 18.8824L6.0434 7.27937C6.01973 6.67783 6.47392 6.17647 7.04253 6.17647H16.9575C17.5261 6.17647 17.9803 6.67783 17.9566 7.27937L17.5 18.8824C17.5 20.0519 16.6046 21 15.5 21Z"
+                    stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        `;
+        li.appendChild(delete_btn);
     });
 }
 
@@ -28,34 +74,65 @@ function formHandler(event) {
 
     // create task
     const li = document.createElement("li");
+    li.className = "task";
     li.dataset.index = tasks.length - 1;
-    li.innerText = input.value;
     taskList.appendChild(li);
 
+    // create checkboxes
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = `task_${tasks.length}`;
+    checkbox.dataset.index = tasks.length - 1;
+    li.appendChild(checkbox);
+
+    const custom_checkbox = document.createElement("label");
+    custom_checkbox.className = "custom-checkbox";
+    custom_checkbox.setAttribute("for", `task_${tasks.length}`);
+    custom_checkbox.innerHTML = /** icon svg */ `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path 
+                d="M16.8 8.40002L9.64043 15.6L7.19995 13.1457" 
+                stroke="black" stroke-width="2" stroke-linecap="roun stroke-linejoin="round"
+            />
+        </svg>
+    `;
+    li.appendChild(custom_checkbox);
+
+    // create task text
+    const task_text = document.createElement("label");
+    task_text.className = "task__text";
+    task_text.setAttribute("for", `task_${tasks.length}`);
+    task_text.innerText = task.text;
+    li.appendChild(task_text);
+
     // create task delete button
-    const span = document.createElement("span");
-    span.innerHTML = "\u00d7";
-    li.appendChild(span);
+    const delete_btn = document.createElement("button");
+    delete_btn.className = "delete__btn";
+    delete_btn.innerHTML = `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M4 6.17647H20M9 3H15M10 16.7647V10.4118M14 16.7647V10.4118M15.5 21H8.5C7.39543 21 6.5 20.0519 6.5 18.8824L6.0434 7.27937C6.01973 6.67783 6.47392 6.17647 7.04253 6.17647H16.9575C17.5261 6.17647 17.9803 6.67783 17.9566 7.27937L17.5 18.8824C17.5 20.0519 16.6046 21 15.5 21Z"
+                stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    `;
+    li.appendChild(delete_btn);
 
     // clear text input
     input.value = "";
 }
 
 function taskClickHandler(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
-    if (event.target.tagName === "LI") {
+    if (event.target.tagName === "INPUT" || event.target.tagName === "LI") {
         // update state
         let index = event.target.getAttribute("data-index");
         tasks[index].isChecked = tasks[index].isChecked ? false : true;
 
         saveTasks();
-
-        // update ui
-        event.target.classList.toggle("checked");
     }
 
-    if (event.target.tagName === "SPAN") {
+    if (event.target.tagName === "BUTTON") {
         // update state
         let index = event.target.parentElement.getAttribute("data-index");
         tasks.splice(index, 1);
@@ -63,8 +140,7 @@ function taskClickHandler(event) {
         saveTasks();
 
         // update ui
-        event.target.parentElement.remove();
-        resetIndex();
+        createTasks();
     }
 }
 
@@ -73,16 +149,4 @@ form.addEventListener("submit", formHandler);
 taskList.addEventListener("click", taskClickHandler);
 
 // ON START
-tasks.forEach((task, index) => {
-    // create task
-    const li = document.createElement("li");
-    li.dataset.index = index;
-    li.innerText = task.text;
-    task.isChecked && li.classList.add("checked");
-    taskList.appendChild(li);
-
-    // create task delete button
-    const span = document.createElement("span");
-    span.innerHTML = "\u00d7";
-    li.appendChild(span);
-});
+createTasks();
