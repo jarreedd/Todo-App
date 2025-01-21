@@ -80,8 +80,8 @@ form {
         margin: 8px;
         cursor: pointer;
         position: relative;
-        display: flex;
-        align-items: start;
+        display: grid;
+        grid-template-columns: 27px calc(100% - 81px) 27px 27px;
 
 
         [type="checkbox"] {
@@ -105,10 +105,10 @@ form {
         }
 
         .task__text {
-            flex-grow: 1;
             font-size: 18px;
             padding-left: 8px;
             transform: translateY(-1px);
+            overflow: hidden;
         }
 
         input[type="checkbox"]:checked ~ .custom-checkbox svg path {
@@ -128,6 +128,7 @@ form {
             align-items: center;
             position: relative;
             padding-left: 8px;
+            aspect-ratio: 1;
         }
 
         .btn::before {
