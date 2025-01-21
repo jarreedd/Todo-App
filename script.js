@@ -49,9 +49,23 @@ function createTasks() {
         task_text.innerText = task.text;
         li.appendChild(task_text);
 
+        // create edit task button
+        const edit_btn = document.createElement("button");
+        edit_btn.className = "btn";
+        edit_btn.classList.add("edit__btn");
+        edit_btn.innerHTML = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path 
+                d="M4.80002 15.6L9.00002 19.2M4.20002 15.6L16.0314 3.35545C17.3053 2.08155 19.3707 2.08155 20.6446 3.35545C21.9185 4.62935 21.9185 6.69475 20.6446 7.96865L8.40002 19.8L2.40002 21.6L4.20002 15.6Z" 
+                stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        `;
+        li.appendChild(edit_btn);
+
         // create task delete button
         const delete_btn = document.createElement("button");
-        delete_btn.className = "delete__btn";
+        delete_btn.className = "btn";
+        delete_btn.classList.add("delete__btn");
         delete_btn.innerHTML = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

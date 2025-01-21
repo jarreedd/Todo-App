@@ -120,16 +120,17 @@ form {
             color: #808080;
         }
 
-        .delete__btn {
+        .btn {
             border: none;
             background-color: transparent;
 
             display: flex;
             align-items: center;
             position: relative;
+            padding-left: 8px;
         }
 
-        .delete__btn::before {
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -142,6 +143,9 @@ form {
 
         .delete__btn:hover > svg path{
             stroke: rgb(191, 0, 0);
+        }
+        .edit__btn:hover > svg path{
+            stroke:#808080;
         }
     }
 
