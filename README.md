@@ -4,6 +4,6 @@ Basic todo app to keep track of tasks to do. Uses HTML, CSS and Vanilla JavaScri
 
 ## Features
 
-- Add and Delete tasks.
-- Mark tasks as done.
+- Add, Edit and Delete tasks
+- Mark tasks as done
 - Saves tasks on device and reload tasks when reopen and reload page.
