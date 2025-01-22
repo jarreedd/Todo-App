@@ -186,23 +186,6 @@ form {
 }
 
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #ffffff;
-
-    p {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color:#bfbfbf;
-    }
-}
-
-
 /* @media (min-width: 376px) {
     form {
         flex-direction: row;
