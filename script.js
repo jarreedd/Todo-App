@@ -118,6 +118,10 @@ function saveEdit(task) {
     createTasks(tasks);
 }
 
+function cancelEdit() {
+    createTasks(tasks);
+}
+
 function deleteTask(task) {
     // update state
     let index = task.getAttribute("data-index");
@@ -177,7 +181,7 @@ function taskClickHandler(event) {
         } else if (event.target.classList.contains("save__btn")) {
             saveEdit(task);
         } else if (event.target.classList.contains("cancel__btn")) {
-            console.log("cancel edit");
+            cancelEdit();
         } else if (event.target.classList.contains("delete__btn")) {
             deleteTask(task);
         }
