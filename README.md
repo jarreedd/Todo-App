@@ -16,4 +16,3 @@ Deployed with netlify [![Netlify Status](https://api.netlify.com/api/v1/badges/f
 - Filter tasks by categories and due dates
 - Sync tasks with a backend
 - Create sub-tasks
-- 
