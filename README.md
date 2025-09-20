@@ -9,3 +9,11 @@ Deployed with netlify [![Netlify Status](https://api.netlify.com/api/v1/badges/f
 - Add, Edit and Delete tasks
 - Mark tasks as done
 - Saves tasks on the device and reloads tasks when reopening and reloading the page.
+
+## In development:
+- Add due dates to tasks
+- Add categories to tasks
+- Filter tasks by categories and due dates
+- Sync tasks with a backend
+- Create sub-tasks
+- 

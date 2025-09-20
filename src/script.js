@@ -1,12 +1,10 @@
-import { createTaskElement, createTasksElements, saveTasks } from "./tasks.js";
-import { editTask } from "./task.js";
+import { tasks, createTasksElements, saveTasks } from "./tasks.js";
+import { createTaskElement, editTask } from "./task.js";
 
 // DOM ELEMENTS
 const taskList = document.querySelector(".tasks-list");
 const form = document.querySelector("form");
 const input = document.querySelector("input");
-
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function saveEdit(taskElement) {
 	const text = taskElement.querySelector(".edit__text").value;

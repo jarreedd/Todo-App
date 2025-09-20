@@ -1,4 +1,6 @@
-import { createTaskElement } from "./task";
+import { createTaskElement } from "./task.js";
+
+export let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 /**
  * Creates a document fragment containing multiple task elements.

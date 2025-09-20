@@ -1,3 +1,5 @@
+import { tasks } from "./tasks.js";
+
 /**
  * Creates a list item element representing a task with interactive elements.
  * @param {Object} task - Task data including index, num, isChecked, and text.
