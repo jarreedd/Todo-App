@@ -1,4 +1,4 @@
-import { tasks } from "./tasks.js";
+import { tasks, saveTasks } from "./tasks.js";
 
 /**
  * Creates a list item element representing a task with interactive elements.
@@ -97,4 +97,12 @@ export function editTask(taskElement) {
 	taskElement.appendChild(edit_text);
 	taskElement.appendChild(save_btn);
 	taskElement.appendChild(cancel_btn);
+}
+
+export function saveEdit(taskElement) {
+	const text = taskElement.querySelector(".edit__text").value;
+	const index = taskElement.getAttribute("data-index");
+	tasks[index].text = text;
+
+	saveTasks(tasks);
 }
