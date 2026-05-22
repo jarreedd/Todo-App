@@ -11,8 +11,10 @@ Deployed with netlify [![Netlify Status](https://api.netlify.com/api/v1/badges/f
 - Saves tasks on the device and reloads tasks when reopening and reloading the page.
 
 ## In development:
+- Ordered tasks list
+- Reorder tasks
 - Add due dates to tasks
-- Add categories to tasks
+- Add categories/tag to tasks
 - Filter tasks by categories and due dates
 - Sync tasks with a backend
 - Create sub-tasks
