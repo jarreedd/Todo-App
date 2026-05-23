@@ -143,10 +143,18 @@ form {
         }
 
         .delete__btn:hover > svg path{
-            stroke: rgb(191, 0, 0);
+            fill: rgb(190, 0, 0);
         }
         .edit__btn:hover > svg path{
-            stroke:#808080;
+            fill:#838383;
+        }
+
+        .save__btn:hover > svg path{
+            stroke: rgb(0, 100, 0)
+        }
+
+        .cancel__btn:hover > svg path{
+            fill: rgb(190, 0, 0)
         }
     }
 
