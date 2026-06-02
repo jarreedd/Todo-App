@@ -1,11 +1,10 @@
+import { tasks, createTasksElements, saveTasks } from "./tasks.js";
 import {
-	tasks,
 	addTask,
-	createTasksElements,
-	saveTasks,
+	createEditTaskElement,
+	saveEdit,
 	deleteTask,
-} from "./tasks.js";
-import { createTaskElement, editTask, saveEdit } from "./task.js";
+} from "./task.js";
 
 // DOM ELEMENTS
 const taskList = document.querySelector(".tasks-list");
@@ -34,7 +33,7 @@ function taskClickHandler(event) {
 		if (event.target.className == "edit__text") {
 			return;
 		} else {
-			let index = event.target.getAttribute("data-index");
+			let index = event.target.dataset.index;
 			tasks[index].isChecked = tasks[index].isChecked ? false : true;
 		}
 
@@ -45,7 +44,7 @@ function taskClickHandler(event) {
 		let taskElement = event.target.parentElement;
 
 		if (event.target.classList.contains("edit__btn")) {
-			editTask(taskElement);
+			createEditTaskElement(taskElement);
 		} else if (event.target.classList.contains("save__btn")) {
 			saveEdit(taskElement);
 			updateUI();

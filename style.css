@@ -81,14 +81,15 @@ form {
         margin: 8px;
         position: relative;
         display: grid;
-        grid-template-columns: 27px calc(100% - 81px) 27px 27px;
+        grid-template-columns: 27px calc(100% - 117px) 30px 30px 30px;
+        align-items: top;
 
 
         [type="checkbox"] {
             display: none;
         }
 
-        .custom-checkbox{
+        .custom-checkedbox{
             border: 2px solid #808080;
             border-radius: 2px;
             height: 25px;
@@ -105,13 +106,15 @@ form {
         }
 
         .task__text {
+            /* height: 25px; */
             font-size: 18px;
-            padding-left: 8px;
-            transform: translateY(-1px);
+            padding-left: 4px;
+            padding-top: 4px;
             overflow: hidden;
+            position: relative;
         }
 
-        input[type="checkbox"]:checked ~ .custom-checkbox svg path {
+        input[type="checkbox"]:checked ~ .custom-checkedbox svg path {
             stroke: #808080;
         }
 
@@ -126,9 +129,10 @@ form {
 
             display: flex;
             align-items: center;
+            /* justify-self: center; */
             position: relative;
-            padding-left: 8px;
             aspect-ratio: 1;
+            margin-left: 8px;
         }
 
         .icon-btn::before {
@@ -140,6 +144,12 @@ form {
             height: 100%;
             background-color: transparent;
             z-index: 1;
+        }
+
+        .order__btn {
+            border: 1px solid black;
+            display: inline;
+            align-items: center;
         }
 
         .delete__btn:hover > svg path{
