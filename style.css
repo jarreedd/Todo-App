@@ -197,6 +197,19 @@ form {
         
     }
 
+    .task__reordering {
+        border: 2px solid #808080;
+        border-radius: 4px;
+        grid-template-columns: calc(100% - 90px) 30px 30px 30px;
+
+        .edit__num {
+            width: 24px;
+            margin-left: 6px;
+            text-align: center;
+            border: none;
+        }
+    }
+
     li.checked {
         color: #808080;
         text-decoration: line-through;
