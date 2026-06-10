@@ -10,13 +10,28 @@ import {
 import { moveItem } from "../utils/moveItem.js";
 
 // DOM ELEMENTS
+/**
+ * The list container where task items are rendered.
+ * @type {HTMLUListElement | null}
+ */
 const taskList = document.querySelector(".tasks-list");
+
+/**
+ * The form used to submit a new task.
+ * @type {HTMLFormElement | null}
+ */
 const form = document.querySelector("form");
+
+/**
+ * The input field for entering a new task label.
+ * @type {HTMLInputElement | null}
+ */
 const newTaskInput = document.querySelector(".input-newTask");
 
 /**
- *
- * @param {Array} newTasksArray When ommited, the User Interface is updated with old task list
+ * Updates the UI by optionally replacing the task data and rerendering the task list.
+ * @param {Array<Object>} [newTasksArray] - Optional new task array to replace current tasks.
+ * @returns {void}
  */
 function updateUI(newTasksArray) {
 	newTasksArray && updateTasks(newTasksArray);
@@ -25,6 +40,11 @@ function updateUI(newTasksArray) {
 	console.log("USER INTERFACE HAS BEEN UPDATED");
 }
 
+/**
+ * Handles task form submission and adds a new task.
+ * @param {SubmitEvent} event - The submit event from the add-task form.
+ * @returns {void}
+ */
 function formHandler(event) {
 	event.preventDefault();
 	addTask(newTaskInput.value);
@@ -34,6 +54,11 @@ function formHandler(event) {
 	newTaskInput.value = "";
 }
 
+/**
+ * Handles click events inside the task list.
+ * @param {MouseEvent} event - The click event triggered by a user interaction.
+ * @returns {void}
+ */
 function taskClickHandler(event) {
 	// event.preventDefault();
 

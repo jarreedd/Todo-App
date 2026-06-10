@@ -1,24 +1,59 @@
 # Todo-App
 
-A basic to-do app is used to keep track of tasks. Uses HTML, CSS and Vanilla JavaScript.
+A lightweight task manager built with HTML, CSS, and vanilla JavaScript (for educational porpuses)
 
-Deployed with netlify [![Netlify Status](https://api.netlify.com/api/v1/badges/fedaf3fb-c719-4c3b-ae3d-56f66ac349aa/deploy-status)](https://app.netlify.com/sites/reeddev-todo/deploys)
+This app lets users add, edit, delete, and complete tasks while persisting data in local storage.
 
-## Features
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fedaf3fb-c719-4c3b-ae3d-56f66ac349aa/deploy-status)](https://app.netlify.com/sites/reeddev-todo/deploys)
 
-- Add, Edit and Delete tasks
-- Mark tasks as done
-- Saves tasks on the device and reloads tasks when reopening and reloading the page.
-- Reorder task with number input
+![alt text](img/image1.png)
 
-## In development:
-- Reorder tasks by drag and drop
-- Add due dates to tasks
-- Add categories/tag to tasks
-- Filter tasks by categories and due dates
-- Create sub-tasks
-- Sync tasks with a backend
+## ✅ Features
 
-## REMINDERS:
-- Change style.css with proper attributes; create naming guideline/naming convention
-- Tasks should not be abled to be edited or reorder at the sam time; fix:??
+- Add, edit, and delete tasks
+- Mark tasks as completed
+- Persist tasks using `localStorage`
+- Reorder tasks via numeric position input
+
+## 🚀 Getting Started
+
+### Run locally
+
+1. Clone the repository.
+2. Open `index.html` in your browser.
+
+### Development
+
+- No build tools are required.
+- Modify HTML, CSS, or JavaScript files.
+- Refresh the browser to see updates.
+
+## 📁 Project Structure
+
+- `index.html` — application entry point
+- `style.css` — styling for the app interface
+- `src/script.js` — main application logic and event handling
+- `src/task.js` — task creation, editing, deletion, and reorder behavior
+- `src/tasks.js` — task storage and rendering utilities
+- `utils/moveItem.js` — helper for task reordering
+
+## 💡 Notes
+
+- Editing and reordering should not be allowed simultaneously, that needs to be fixed.
+
+## 🔧 Future Improvements
+
+- Drag-and-drop task reordering
+- Due dates and reminders
+- Categories and tags
+- Filter tasks by category or due date
+- Subtasks support
+- Backend sync and authentication
+
+## 📌 Contribution
+
+Contributions are welcome. Open issues or submit pull requests for improvements.
+
+## Reminder:
+
+Change style.css with proper attributes; create naming guideline/naming convention (class for style and ids or dataset attributes for querying)

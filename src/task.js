@@ -2,7 +2,11 @@ import { tasks, saveTasks } from "./tasks.js";
 import { moveItem } from "../utils/moveItem.js";
 
 // CREATE TASK
-
+/**
+ * Creates the checkbox input element for a task item.
+ * @param {boolean} isChecked - Whether the task checkbox is initially checked.
+ * @returns {HTMLInputElement} The checkbox input element.
+ */
 function createCheckboxElement(isChecked) {
 	const checkbox = document.createElement("input");
 	checkbox.type = "checkbox";
@@ -12,6 +16,10 @@ function createCheckboxElement(isChecked) {
 	return checkbox;
 }
 
+/**
+ * Creates a custom checkbox label element for task completion toggle.
+ * @returns {HTMLLabelElement} The label element used as a custom checkbox.
+ */
 function createCustomCheckedboxElement() {
 	const custom_checkedbox = document.createElement("label");
 	custom_checkedbox.className = "custom-checkedbox";
@@ -27,6 +35,11 @@ function createCustomCheckedboxElement() {
 	return custom_checkedbox;
 }
 
+/**
+ * Creates the text label for a task item.
+ * @param {string} text - The task text to display.
+ * @returns {HTMLLabelElement} The task text label element.
+ */
 function createTaskTextElement(text) {
 	const task_text = document.createElement("label");
 	task_text.className = "task__text";
@@ -35,6 +48,10 @@ function createTaskTextElement(text) {
 	return task_text;
 }
 
+/**
+ * Creates the edit button used to enter task edit mode.
+ * @returns {HTMLButtonElement} The edit button element.
+ */
 function createEditTaskButtonElement() {
 	const edit_btn = document.createElement("button");
 	edit_btn.className = "icon-btn";
@@ -48,6 +65,10 @@ function createEditTaskButtonElement() {
 	return edit_btn;
 }
 
+/**
+ * Creates the delete button for a task item.
+ * @returns {HTMLButtonElement} The delete button element.
+ */
 function createDeleteTaskButtonElement() {
 	const delete_btn = document.createElement("button");
 	delete_btn.className = "icon-btn";
@@ -107,8 +128,12 @@ export function createTaskElement(task) {
 	return li;
 }
 
+/**
+ * Adds a new task to the in-memory task list and saves it.
+ * @param {string} content - The text content for the new task.
+ * @returns {void}
+ */
 export function addTask(content) {
-	// update state
 	const task = {
 		text: content,
 		isChecked: false,
@@ -122,6 +147,11 @@ export function addTask(content) {
 
 // EDIT TASK
 
+/**
+ * Creates a text input element pre-populated with the existing task text.
+ * @param {string} prev_text - The current text of the task.
+ * @returns {HTMLInputElement} The edit input element.
+ */
 function createEditTextInputElement(prev_text) {
 	const edit_text = document.createElement("input");
 	edit_text.type = "text";
@@ -133,6 +163,10 @@ function createEditTextInputElement(prev_text) {
 	return edit_text;
 }
 
+/**
+ * Creates a save button for editing or reordering tasks.
+ * @returns {HTMLButtonElement} The save button element.
+ */
 function createSavetButtonElement() {
 	const saveBtnElement = document.createElement("button");
 	saveBtnElement.className = "icon-btn";
@@ -145,6 +179,10 @@ function createSavetButtonElement() {
 	return saveBtnElement;
 }
 
+/**
+ * Creates a cancel button for task edit and reorder forms.
+ * @returns {HTMLButtonElement} The cancel button element.
+ */
 function createCancelButtonElement() {
 	const cancelBtnElement = document.createElement("button");
 	cancelBtnElement.className = "icon-btn";
@@ -158,6 +196,11 @@ function createCancelButtonElement() {
 	return cancelBtnElement;
 }
 
+/**
+ * Transforms a task list item into an edit form.
+ * @param {HTMLElement} taskElement - The task list item element to convert.
+ * @returns {void}
+ */
 export function createEditTaskElement(taskElement) {
 	let index = taskElement.dataset.index;
 	let prev_text = tasks[index].text; // args for func should be task element and tasks array
@@ -177,6 +220,11 @@ export function createEditTaskElement(taskElement) {
 	taskElement.appendChild(cancel_btn);
 }
 
+/**
+ * Saves the edited task text back to the task store.
+ * @param {HTMLElement} taskElement - The task list item containing the edited text.
+ * @returns {void}
+ */
 export function saveEdit(taskElement) {
 	const text = taskElement.querySelector(".edit__text").value;
 	const index = taskElement.getAttribute("data-index");
@@ -187,6 +235,11 @@ export function saveEdit(taskElement) {
 
 // REORDER TASK
 
+/**
+ * Transforms a task list item into a reorder form.
+ * @param {HTMLElement} taskElement - The task list item element to convert.
+ * @returns {void}
+ */
 export function createReorderTaskElement(taskElement) {
 	console.log("CREATE REORDER TASK ELEMENT");
 	const index = taskElement.dataset.index;
@@ -216,10 +269,10 @@ export function createReorderTaskElement(taskElement) {
 	taskElement.appendChild(numInputElement);
 }
 /**
- *
- * @param {number} prev_num Index number of the item that has to be moved (zero-based)
- * @param {number} new_num Index number of where the item has to be moved to (zero-based)
- * @returns Returns the new reordered task list
+ * Reorders the tasks array and reassigns index and num values.
+ * @param {number} prev_num - One-based source position of the task to move.
+ * @param {number} new_num - One-based destination position for the task.
+ * @returns {Array<Object>} The reordered task list.
  */
 export function saveTasksOrder(prev_num, new_num) {
 	const new_tasks_order = moveItem(tasks, prev_num - 1, new_num - 1);
@@ -232,8 +285,9 @@ export function saveTasksOrder(prev_num, new_num) {
 }
 
 /**
- * Removes a task from the task list and updates remaining task indices.
+ * Removes a task from the list and updates indices for remaining tasks.
  * @param {HTMLElement} taskElement - The DOM element representing the task to delete.
+ * @returns {void}
  */
 export function deleteTask(taskElement) {
 	// update state

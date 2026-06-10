@@ -1,35 +1,41 @@
 import { createTaskElement } from "./task.js";
 
-export let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+/**
+ * A list of task objects loaded from localStorage.
+ * @type {Array<Object>}
+ */
+export const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 /**
- *
- * @param {Array} newTasksArray
+ * Replaces the contents of the shared tasks array with a new list.
+ * @param {Array<Object>} newTasksArray - The new array of task objects.
+ * @returns {void}
  */
 export function updateTasks(newTasksArray) {
-	tasks.splice(0); // Clear task list
-	newTasksArray.forEach((task) => tasks.push(task));
+	tasks.splice(0);
+	for (const task of newTasksArray) tasks.push(task);
 }
 
 /**
- * Creates a document fragment containing multiple task elements.
- * @param {[]} tasks - An array of task objects to be rendered.
- * @returns {DocumentFragment} A document fragment containing all task list item elements.
+ * Creates a document fragment containing rendered task list items.
+ * @param {Array<Object>} tasks - The task objects to render.
+ * @returns {DocumentFragment} A fragment with task list item elements.
  */
 export function createTasksElements(tasks) {
-	let fragment = document.createDocumentFragment();
+	const fragment = document.createDocumentFragment();
 
-	tasks.forEach((task) => {
+	for (const task of tasks) {
 		const taskElement = createTaskElement(task);
 		fragment.appendChild(taskElement);
-	});
+	}
 
 	return fragment;
 }
 
 /**
- * Saves an array of tasks to localStorage.
- * @param {[]} tasks - The array of task objects to save.
+ * Persists tasks to localStorage.
+ * @param {Array<Object>} tasks - The task objects to save.
+ * @returns {void}
  */
 export function saveTasks(tasks) {
 	localStorage.setItem("tasks", JSON.stringify(tasks));
