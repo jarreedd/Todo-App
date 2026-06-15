@@ -295,7 +295,7 @@ export function deleteTask(taskElement) {
 	tasks.splice(index, 1); // Mutates tasks array, dont need old structure
 
 	// DO NOT USE array.splice() WHEN THE PREVIOUS VERSION
-	// OF array BEFORE MUTATION HAS TO BE USED AGAIN
+	// OF array ,BEFORE MUTATION, HAS TO BE USED AGAIN
 
 	// Handles mutation by rearrange index and tasks nums
 	tasks.forEach((task, index) => {

@@ -7,10 +7,8 @@
  */
 
 export function moveItem(array, prev_index, new_index) {
-	let new_array = [];
-	array.forEach((item) => {
-		new_array.push(item);
-	});
+	let new_array = [...array];
+
 	const item = new_array.splice(prev_index, 1);
 	const itemContent = item[0];
 

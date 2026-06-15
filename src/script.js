@@ -29,15 +29,15 @@ const form = document.querySelector("form");
 const newTaskInput = document.querySelector(".input-newTask");
 
 /**
- * Updates the UI by optionally replacing the task data and rerendering the task list.
+ * Updates the task list by optionally replacing the task data and rerendering the task list.
  * @param {Array<Object>} [newTasksArray] - Optional new task array to replace current tasks.
  * @returns {void}
  */
-function updateUI(newTasksArray) {
+function updateTaskListElement(newTasksArray) {
 	newTasksArray && updateTasks(newTasksArray);
 	taskList.innerHTML = "";
 	taskList.appendChild(createTasksElements(tasks));
-	console.log("USER INTERFACE HAS BEEN UPDATED");
+	console.log("TASK LIST HAS BEEN UPDATED");
 }
 
 /**
@@ -47,11 +47,13 @@ function updateUI(newTasksArray) {
  */
 function formHandler(event) {
 	event.preventDefault();
-	addTask(newTaskInput.value);
-	updateUI();
+	const formData = new FormData(event.target);
+	const data = Object.fromEntries(formData);
 
-	// clear text input
-	newTaskInput.value = "";
+	addTask(data.task_text);
+	updateTaskListElement();
+
+	event.target.reset();
 }
 
 /**
@@ -79,20 +81,20 @@ function taskClickHandler(event) {
 			createEditTaskElement(taskElement);
 		} else if (event.target.classList.contains("save-edit-btn")) {
 			saveEdit(taskElement);
-			updateUI();
+			updateTaskListElement();
 		} else if (event.target.classList.contains("cancel-edit-btn")) {
-			updateUI();
+			updateTaskListElement();
 		} else if (event.target.classList.contains("delete__btn")) {
 			deleteTask(taskElement);
-			updateUI();
+			updateTaskListElement();
 		} else if (event.target.classList.contains("order__btn")) {
 			createReorderTaskElement(taskElement);
 		} else if (event.target.classList.contains("save-reorder-btn")) {
 			const prev_num = taskElement.dataset.num;
 			const new_num = taskElement.querySelector(".edit__num").value;
-			updateUI(saveTasksOrder(prev_num, new_num));
+			updateTaskListElement(saveTasksOrder(prev_num, new_num));
 		} else if (event.target.classList.contains("cancel-reorder-btn")) {
-			updateUI();
+			updateTaskListElement();
 		}
 	}
 }
@@ -100,4 +102,4 @@ function taskClickHandler(event) {
 //EVENT LISTENERS
 form.addEventListener("submit", formHandler);
 taskList.addEventListener("click", taskClickHandler);
-updateUI();
+updateTaskListElement();
