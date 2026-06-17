@@ -1,11 +1,8 @@
 # Todo-App
 
-A lightweight task manager built with HTML, CSS, and vanilla JavaScript for adding, editing, deleting, completing and reordering tasks.
-
-Tasks are saved in `localStorage`, so your list stays available after you refresh the page.
+A lightweight task manager built with HTML, CSS, and vanilla JavaScript for adding, editing, deleting, completing and reordering tasks. Tasks are saved in `localStorage`, so your list stays available after you refresh the page.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fedaf3fb-c719-4c3b-ae3d-56f66ac349aa/deploy-status)](https://app.netlify.com/sites/reeddev-todo/deploys)
-
 **Link:** [todo-reedwebdev.netlify.app](https://todo-reedwebdev.netlify.app/)
 
 ![alt text](img/image1.png)
