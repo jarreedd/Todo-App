@@ -1,5 +1,6 @@
 import { tasks, saveTasks } from "./tasks.js";
 import { moveItem } from "../utils/moveItem.js";
+import { updateTaskListElement } from "./script.js";
 
 // CREATE TASK
 /**
@@ -113,17 +114,27 @@ export function createTaskElement(task) {
 	const edit_btn = createEditTaskButtonElement();
 	const delete_btn = createDeleteTaskButtonElement();
 
-	const order_btn = document.createElement("button");
-	order_btn.className = "icon-btn";
-	order_btn.classList.add("order__btn");
-	order_btn.innerText = num;
+	const grab_icon = document.createElement("span");
+	grab_icon.className = "grab-icon icon-btn";
+	grab_icon.innerHTML = /** icon svg */ `
+		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<circle cx="40" cy="80" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="200" cy="80" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="40" cy="160" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="120" cy="80" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="200" cy="160" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="120" cy="160" r="20" stroke="black" stroke-width="20"/>
+		</svg>
+
+
+	`;
 
 	li.appendChild(checkboxElement);
 	li.appendChild(custom_checkedbox);
 	li.appendChild(task_text);
 	li.appendChild(edit_btn);
 	li.appendChild(delete_btn);
-	li.appendChild(order_btn);
+	li.appendChild(grab_icon);
 
 	return li;
 }
@@ -236,46 +247,13 @@ export function saveEdit(taskElement) {
 // REORDER TASK
 
 /**
- * Transforms a task list item into a reorder form.
- * @param {HTMLElement} taskElement - The task list item element to convert.
- * @returns {void}
- */
-export function createReorderTaskElement(taskElement) {
-	console.log("CREATE REORDER TASK ELEMENT");
-	const index = taskElement.dataset.index;
-	const num = taskElement.dataset.num;
-	const text = tasks[index].text;
-
-	const task_text = createTaskTextElement(text);
-	task_text.setAttribute("for", `task_${num}`);
-	task_text.dataset.index = index;
-
-	const save_btn = createSavetButtonElement();
-	save_btn.classList.add("save-reorder-btn");
-
-	const cancel_btn = createCancelButtonElement();
-	cancel_btn.classList.add("cancel-reorder-btn");
-
-	const numInputElement = document.createElement("input");
-	numInputElement.type = "text";
-	numInputElement.className = "edit__num";
-	numInputElement.value = num;
-
-	taskElement.innerHTML = "";
-	taskElement.classList.add("task__reordering");
-	taskElement.appendChild(task_text);
-	taskElement.appendChild(save_btn);
-	taskElement.appendChild(cancel_btn);
-	taskElement.appendChild(numInputElement);
-}
-/**
  * Reorders the tasks array and reassigns index and num values.
- * @param {number} prev_num - One-based source position of the task to move.
- * @param {number} new_num - One-based destination position for the task.
+ * @param {number} prev_index - zero-based source position of the task to move.
+ * @param {number} new_index - zero-based destination position for the task.
  * @returns {Array<Object>} The reordered task list.
  */
-export function saveTasksOrder(prev_num, new_num) {
-	const new_tasks_order = moveItem(tasks, prev_num - 1, new_num - 1);
+export function saveTasksOrder(prev_index, new_index) {
+	const new_tasks_order = moveItem(tasks, prev_index, new_index);
 	new_tasks_order.forEach((task, index) => {
 		task.index = index;
 		task.num = index + 1;

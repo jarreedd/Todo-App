@@ -1,4 +1,12 @@
 import { createTaskElement } from "./task.js";
+import {
+	dragStart,
+	dragOver,
+	dragDrop,
+	dragEnter,
+	dragLeave,
+	dragEnd,
+} from "../utils/drag.js";
 
 /**
  * A list of task objects loaded from localStorage.
@@ -26,6 +34,14 @@ export function createTasksElements(tasks) {
 
 	for (const task of tasks) {
 		const taskElement = createTaskElement(task);
+
+		taskElement.addEventListener("dragstart", dragStart);
+		taskElement.addEventListener("dragend", dragEnd);
+		taskElement.addEventListener("dragover", dragOver);
+		taskElement.addEventListener("drop", dragDrop);
+		taskElement.addEventListener("dragenter", dragEnter);
+		taskElement.addEventListener("dragleave", dragLeave);
+
 		fragment.appendChild(taskElement);
 	}
 

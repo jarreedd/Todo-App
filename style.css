@@ -82,7 +82,7 @@ form {
         position: relative;
         display: grid;
         grid-template-columns: 27px calc(100% - 117px) 30px 30px 30px;
-        align-items: top;
+        align-items: center;
 
 
         [type="checkbox"] {
@@ -109,9 +109,9 @@ form {
             /* height: 25px; */
             font-size: 18px;
             padding-left: 4px;
-            padding-top: 4px;
             overflow: hidden;
             position: relative;
+
         }
 
         input[type="checkbox"]:checked ~ .custom-checkedbox svg path {
@@ -166,7 +166,18 @@ form {
         .cancel__btn:hover > svg path{
             fill: rgb(190, 0, 0)
         }
+
+        .grab-icon {
+        width: 24px;
+        margin-left: 6px;
+        }
+
+        .grab-icon:hover {
+            cursor: grab;
+        }
+        
     }
+
 
     .task__editing {
         margin: 0;
@@ -197,22 +208,26 @@ form {
         
     }
 
-    .task__reordering {
-        border: 2px solid #808080;
-        border-radius: 4px;
-        grid-template-columns: calc(100% - 90px) 30px 30px 30px;
-
-        .edit__num {
-            width: 24px;
-            margin-left: 6px;
-            text-align: center;
-            border: none;
-        }
-    }
-
     li.checked {
         color: #808080;
         text-decoration: line-through;
+    }
+
+    .task_order {
+        display: block ;
+        border: none;
+        border-radius: 2px;
+        background-color: #bfbfbf;
+        color: #ffffff;
+        padding: 1px 0 1px 8px;
+    }
+    .task_order.dragging {
+        border: 2px solid rgb(0, 0, 0);
+        opacity: 1;
+    }
+
+    .task_order.over {
+        background-color: #6d6d6d;
     }
 }
 

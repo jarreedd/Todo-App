@@ -4,10 +4,13 @@ import {
 	createEditTaskElement,
 	saveEdit,
 	deleteTask,
-	createReorderTaskElement,
 	saveTasksOrder,
 } from "./task.js";
-import { moveItem } from "../utils/moveItem.js";
+
+export let state = {
+	dragging: false,
+	edit: undefined,
+};
 
 // DOM ELEMENTS
 /**
@@ -33,11 +36,10 @@ const newTaskInput = document.querySelector(".input-newTask");
  * @param {Array<Object>} [newTasksArray] - Optional new task array to replace current tasks.
  * @returns {void}
  */
-function updateTaskListElement(newTasksArray) {
+export function updateTaskListElement(newTasksArray) {
 	newTasksArray && updateTasks(newTasksArray);
 	taskList.innerHTML = "";
 	taskList.appendChild(createTasksElements(tasks));
-	console.log("TASK LIST HAS BEEN UPDATED");
 }
 
 /**
@@ -75,27 +77,27 @@ function taskClickHandler(event) {
 	}
 
 	if (event.target.tagName === "BUTTON") {
-		const taskElement = event.target.parentElement;
+		const taskElement = event.target.closest("li");
 
-		if (event.target.classList.contains("edit__btn")) {
-			createEditTaskElement(taskElement);
-		} else if (event.target.classList.contains("save-edit-btn")) {
-			saveEdit(taskElement);
-			updateTaskListElement();
-		} else if (event.target.classList.contains("cancel-edit-btn")) {
-			updateTaskListElement();
-		} else if (event.target.classList.contains("delete__btn")) {
-			deleteTask(taskElement);
-			updateTaskListElement();
-		} else if (event.target.classList.contains("order__btn")) {
-			createReorderTaskElement(taskElement);
-		} else if (event.target.classList.contains("save-reorder-btn")) {
-			const prev_num = taskElement.dataset.num;
-			const new_num = taskElement.querySelector(".edit__num").value;
-			updateTaskListElement(saveTasksOrder(prev_num, new_num));
-		} else if (event.target.classList.contains("cancel-reorder-btn")) {
-			updateTaskListElement();
-		}
+		let classList = event.target.classList;
+		classList.forEach((item) => {
+			switch (item) {
+				case "edit__btn":
+					createEditTaskElement(taskElement);
+					break;
+				case "save-edit-btn":
+					saveEdit(taskElement);
+					updateTaskListElement();
+					break;
+				case "cancel-edit-btn":
+					updateTaskListElement();
+					break;
+				case "delete__btn":
+					deleteTask(taskElement);
+					updateTaskListElement();
+					break;
+			}
+		});
 	}
 }
 
@@ -103,3 +105,30 @@ function taskClickHandler(event) {
 form.addEventListener("submit", formHandler);
 taskList.addEventListener("click", taskClickHandler);
 updateTaskListElement();
+
+taskList.addEventListener("mousedown", (event) => {
+	if (
+		event.target.closest("span") &&
+		event.target.closest("span").classList.contains("grab-icon")
+	) {
+		state.dragging = true;
+		event.target.closest("li").draggable = true;
+
+		const taskElements = document.getElementsByClassName("task");
+		for (const taskElement of taskElements) {
+			const taskNumber = taskElement.dataset.num;
+			const taskIndex = taskElement.dataset.index;
+
+			taskElement.innerHTML = "";
+			taskElement.classList.add("task_order");
+			taskElement.textContent = `TASK ${taskNumber}: ${tasks[taskIndex].text}`;
+		}
+	}
+});
+
+document.addEventListener("mouseup", (event) => {
+	if (state.dragging) {
+		updateTaskListElement();
+		state.dragging = false;
+	}
+});
