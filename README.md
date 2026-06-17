@@ -6,7 +6,7 @@ Tasks are saved in `localStorage`, so your list stays available after you refres
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fedaf3fb-c719-4c3b-ae3d-56f66ac349aa/deploy-status)](https://app.netlify.com/sites/reeddev-todo/deploys)
 
-**Link:** ![Todo App](https://todo-reedwebdev.netlify.app/)
+**Link:** [todo-reedwebdev.netlify.app](https://todo-reedwebdev.netlify.app/)
 
 ![alt text](img/image1.png)
 
