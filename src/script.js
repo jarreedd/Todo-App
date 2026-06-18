@@ -28,12 +28,6 @@ const mainHeaderElement = document.getElementById("main_header");
 const taskList = document.querySelector(".tasks-list");
 
 /**
- * The form used to submit a new task.
- * @type {HTMLFormElement | null}
- */
-const addTaskForm = document.getElementById("add_form");
-
-/**
  * The input field for entering a new task label.
  * @type {HTMLInputElement | null}
  */
@@ -56,7 +50,6 @@ export function updateTaskListElement(newTasksArray) {
  * @returns {void}
  */
 function addTaskFormHandler(event) {
-	event.preventDefault();
 	const formData = new FormData(event.target);
 	const data = Object.fromEntries(formData);
 
@@ -133,7 +126,6 @@ updateTaskListElement();
 mainHeaderElement.appendChild(createSortBtnElement());
 
 //EVENT LISTENERS
-addTaskForm.addEventListener("submit", addTaskFormHandler);
 taskList.addEventListener("click", taskClickHandler);
 
 document.addEventListener("mouseup", (event) => {
@@ -150,5 +142,9 @@ document.addEventListener("submit", (event) => {
 		state.sorting = false;
 		event.target.parentElement.appendChild(createSortBtnElement());
 		event.target.remove();
+	}
+
+	if (event.target.classList.contains("add_form")) {
+		addTaskFormHandler(event);
 	}
 });
