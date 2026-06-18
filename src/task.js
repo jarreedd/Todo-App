@@ -1,5 +1,5 @@
 import { tasks, saveTasks } from "./tasks.js";
-import { moveItem } from "../utils/moveItem.js";
+import { moveItem } from "./utils/moveItem.js";
 import { updateTaskListElement } from "./script.js";
 
 // CREATE TASK
@@ -49,6 +49,18 @@ function createTaskTextElement(text) {
 	return task_text;
 }
 
+function createTaskOptionButtonElement() {
+	const optionBtn = document.createElement("button");
+	optionBtn.className = "icon-btn";
+	optionBtn.classList.add("options__btn");
+	optionBtn.innerHTML = /** icon svg */ `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+			<path d="M320 208C289.1 208 264 182.9 264 152C264 121.1 289.1 96 320 96C350.9 96 376 121.1 376 152C376 182.9 350.9 208 320 208zM320 432C350.9 432 376 457.1 376 488C376 518.9 350.9 544 320 544C289.1 544 264 518.9 264 488C264 457.1 289.1 432 320 432zM376 320C376 350.9 350.9 376 320 376C289.1 376 264 350.9 264 320C264 289.1 289.1 264 320 264C350.9 264 376 289.1 376 320z"/>
+		</svg>
+    `;
+	return optionBtn;
+}
+
 /**
  * Creates the edit button used to enter task edit mode.
  * @returns {HTMLButtonElement} The edit button element.
@@ -82,6 +94,23 @@ function createDeleteTaskButtonElement() {
 	return delete_btn;
 }
 
+export function createGrabIconElement() {
+	const grab_icon = document.createElement("span");
+	grab_icon.className = "grab-icon icon-btn";
+	grab_icon.classList.add("hidden");
+	grab_icon.innerHTML = /** icon svg */ `
+		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<circle cx="40" cy="80" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="200" cy="80" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="40" cy="160" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="120" cy="80" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="200" cy="160" r="20" stroke="black" stroke-width="20"/>
+			<circle cx="120" cy="160" r="20" stroke="black" stroke-width="20"/>
+		</svg>
+	`;
+	return grab_icon;
+}
+
 /**
  * Creates a list item element representing a task with interactive elements.
  * @param {Object} task - Task data including index, num, isChecked, and text.
@@ -112,29 +141,19 @@ export function createTaskElement(task) {
 	task_text.dataset.index = index;
 
 	const edit_btn = createEditTaskButtonElement();
+	edit_btn.classList.add("hidden");
+
 	const delete_btn = createDeleteTaskButtonElement();
+	delete_btn.classList.add("hidden");
 
-	const grab_icon = document.createElement("span");
-	grab_icon.className = "grab-icon icon-btn";
-	grab_icon.innerHTML = /** icon svg */ `
-		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<circle cx="40" cy="80" r="20" stroke="black" stroke-width="20"/>
-			<circle cx="200" cy="80" r="20" stroke="black" stroke-width="20"/>
-			<circle cx="40" cy="160" r="20" stroke="black" stroke-width="20"/>
-			<circle cx="120" cy="80" r="20" stroke="black" stroke-width="20"/>
-			<circle cx="200" cy="160" r="20" stroke="black" stroke-width="20"/>
-			<circle cx="120" cy="160" r="20" stroke="black" stroke-width="20"/>
-		</svg>
-
-
-	`;
+	const taskOption_btn = createTaskOptionButtonElement();
 
 	li.appendChild(checkboxElement);
 	li.appendChild(custom_checkedbox);
 	li.appendChild(task_text);
+	li.appendChild(taskOption_btn);
 	li.appendChild(edit_btn);
 	li.appendChild(delete_btn);
-	li.appendChild(grab_icon);
 
 	return li;
 }

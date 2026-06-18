@@ -1,4 +1,5 @@
-import { state, sortOptions } from "../src/script.js";
+import { state, sortOptions } from "../script.js";
+import { createGrabIconElement } from "../task.js";
 
 function createSortingFromElement() {
 	const formElement = document.createElement("form");
@@ -35,12 +36,6 @@ function createSortingFromElement() {
 	return formElement;
 }
 
-export function sort(event) {
-	state.sorting = true;
-	event.target.parentElement.appendChild(createSortingFromElement());
-	event.target.remove();
-}
-
 export function createSortBtnElement() {
 	const sortBtnElement = document.createElement("button");
 	sortBtnElement.id = "sort_btn";
@@ -48,4 +43,24 @@ export function createSortBtnElement() {
 	sortBtnElement.textContent = "Sort";
 	sortBtnElement.addEventListener("click", sort);
 	return sortBtnElement;
+}
+
+export function sort(event) {
+	state.sorting = true;
+
+	const sortingFromElement = createSortingFromElement();
+	event.target.parentElement.appendChild(sortingFromElement);
+	event.target.remove();
+
+	const formData = new FormData(sortingFromElement);
+	const data = Object.fromEntries(formData);
+	let isCustom = data.sort_options === "custom";
+
+	if (state.sorting && isCustom) {
+		const taskElements = document.getElementsByClassName("task");
+		for (const element of taskElements) {
+			element.appendChild(createGrabIconElement());
+			element.querySelector(".options__btn").remove();
+		}
+	}
 }

@@ -11,9 +11,7 @@
     cursor: auto;
 }
 
-.hidden {
-    display: none;
-}
+
 
 .btn {
     border: none;
@@ -138,7 +136,8 @@ header.main_header {
         margin: 8px;
         position: relative;
         display: grid;
-        grid-template-columns: 27px calc(100% - 117px) 30px 30px 30px;
+        /* grid-template-columns: 27px calc(100% - 87px) 30px 30px; */
+        grid-template-columns: 27px calc(100% - 57px) 30px;
         align-items: center;
 
 
@@ -203,14 +202,23 @@ header.main_header {
             z-index: 1;
         }
 
-        .order__btn {
-            border: 1px solid black;
-            display: inline;
-            align-items: center;
+        .options__btn {
+            display: none;
+            height: 100%;
+        }
+        .options__btn:hover > svg path{
+            fill: #a3a3a3;
         }
 
+        .delete__btn.hidden {
+            display: none;
+        }
         .delete__btn:hover > svg path{
             fill: rgb(190, 0, 0);
+        }
+
+        .edit__btn.hidden {
+            display: none;
         }
         .edit__btn:hover > svg path{
             fill:#838383;
@@ -233,6 +241,10 @@ header.main_header {
             cursor: grab;
         }
         
+    }
+
+    .task:hover > .options__btn {
+        display: inline-block;
     }
 
 
@@ -286,6 +298,10 @@ header.main_header {
     .task_order.over {
         background-color: #6d6d6d;
     }
+}
+
+.hidden {
+    display: none;
 }
 
 

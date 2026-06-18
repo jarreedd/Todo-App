@@ -5,16 +5,16 @@ import {
 	saveEdit,
 	deleteTask,
 	saveTasksOrder,
+	createGrabIconElement,
 } from "./task.js";
 
-import { sort, createSortBtnElement } from "../utils/sort.js";
+import { sort, createSortBtnElement } from "./utils/sort.js";
 
 export const sortOptions = ["custom", "A-Z", "Z-A"];
 
 export let state = {
 	sorting: false,
 	dragging: false,
-	edit: undefined,
 };
 
 // DOM ELEMENTS
@@ -38,10 +38,18 @@ const newTaskInput = document.querySelector(".input-newTask");
  * @param {Array<Object>} [newTasksArray] - Optional new task array to replace current tasks.
  * @returns {void}
  */
-export function updateTaskListElement(newTasksArray) {
+export function updateTaskListElement(newTasksArray, mode) {
 	newTasksArray && updateTasks(newTasksArray);
 	taskList.innerHTML = "";
 	taskList.appendChild(createTasksElements(tasks));
+
+	if (mode === "sorting") {
+		const taskElements = document.getElementsByClassName("task");
+		for (const element of taskElements) {
+			element.appendChild(createGrabIconElement());
+			element.querySelector(".options__btn").remove();
+		}
+	}
 }
 
 /**
@@ -137,11 +145,14 @@ document.addEventListener("mouseup", (event) => {
 
 document.addEventListener("submit", (event) => {
 	event.preventDefault();
+	const submitter = event.submitter;
+	console.log(submitter);
 
 	if (event.target.classList.contains("sort_form")) {
 		state.sorting = false;
 		event.target.parentElement.appendChild(createSortBtnElement());
 		event.target.remove();
+		updateTaskListElement();
 	}
 
 	if (event.target.classList.contains("add_form")) {

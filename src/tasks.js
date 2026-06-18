@@ -6,7 +6,7 @@ import {
 	dragEnter,
 	dragLeave,
 	dragEnd,
-} from "../utils/drag.js";
+} from "./utils/drag.js";
 
 /**
  * A list of task objects loaded from localStorage.
