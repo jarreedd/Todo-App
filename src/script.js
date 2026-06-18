@@ -7,12 +7,20 @@ import {
 	saveTasksOrder,
 } from "./task.js";
 
+import { sort, createSortBtnElement } from "../utils/sort.js";
+
+export const sortOptions = ["custom", "A-Z", "Z-A"];
+
 export let state = {
+	sorting: false,
 	dragging: false,
 	edit: undefined,
 };
 
 // DOM ELEMENTS
+
+const mainHeaderElement = document.getElementById("main_header");
+
 /**
  * The list container where task items are rendered.
  * @type {HTMLUListElement | null}
@@ -23,7 +31,7 @@ const taskList = document.querySelector(".tasks-list");
  * The form used to submit a new task.
  * @type {HTMLFormElement | null}
  */
-const form = document.querySelector("form");
+const addTaskForm = document.getElementById("add_form");
 
 /**
  * The input field for entering a new task label.
@@ -47,7 +55,7 @@ export function updateTaskListElement(newTasksArray) {
  * @param {SubmitEvent} event - The submit event from the add-task form.
  * @returns {void}
  */
-function formHandler(event) {
+function addTaskFormHandler(event) {
 	event.preventDefault();
 	const formData = new FormData(event.target);
 	const data = Object.fromEntries(formData);
@@ -101,11 +109,6 @@ function taskClickHandler(event) {
 	}
 }
 
-//EVENT LISTENERS
-form.addEventListener("submit", formHandler);
-taskList.addEventListener("click", taskClickHandler);
-updateTaskListElement();
-
 taskList.addEventListener("mousedown", (event) => {
 	if (
 		event.target.closest("span") &&
@@ -126,9 +129,26 @@ taskList.addEventListener("mousedown", (event) => {
 	}
 });
 
+updateTaskListElement();
+mainHeaderElement.appendChild(createSortBtnElement());
+
+//EVENT LISTENERS
+addTaskForm.addEventListener("submit", addTaskFormHandler);
+taskList.addEventListener("click", taskClickHandler);
+
 document.addEventListener("mouseup", (event) => {
 	if (state.dragging) {
 		updateTaskListElement();
 		state.dragging = false;
+	}
+});
+
+document.addEventListener("submit", (event) => {
+	event.preventDefault();
+
+	if (event.target.classList.contains("sort_form")) {
+		state.sorting = false;
+		event.target.parentElement.appendChild(createSortBtnElement());
+		event.target.remove();
 	}
 });
