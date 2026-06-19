@@ -1,6 +1,6 @@
 import { tasks, saveTasks } from "./tasks.js";
-import { moveItem } from "./utils/moveItem.js";
-import { updateTaskListElement } from "./script.js";
+import { moveItem } from "../utils/moveItem.js";
+import { updateTaskListElement } from "./main.js";
 
 // CREATE TASK
 /**
@@ -152,8 +152,8 @@ export function createTaskElement(task) {
 	li.appendChild(custom_checkedbox);
 	li.appendChild(task_text);
 	li.appendChild(taskOption_btn);
-	li.appendChild(edit_btn);
-	li.appendChild(delete_btn);
+	// li.appendChild(edit_btn);
+	// li.appendChild(delete_btn);
 
 	return li;
 }
@@ -257,7 +257,7 @@ export function createEditTaskElement(taskElement) {
  */
 export function saveEdit(taskElement) {
 	const text = taskElement.querySelector(".edit__text").value;
-	const index = taskElement.getAttribute("data-index");
+	const index = taskElement.dataset.index;
 	tasks[index].text = text;
 
 	saveTasks(tasks);
@@ -287,8 +287,7 @@ export function saveTasksOrder(prev_index, new_index) {
  * @returns {void}
  */
 export function deleteTask(taskElement) {
-	// update state
-	let index = taskElement.getAttribute("data-index");
+	let index = taskElement.dataset.index;
 	tasks.splice(index, 1); // Mutates tasks array, dont need old structure
 
 	// DO NOT USE array.splice() WHEN THE PREVIOUS VERSION

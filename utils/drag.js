@@ -1,6 +1,7 @@
-import { updateTaskListElement, state } from "../script.js";
-import { saveTasksOrder } from "../task.js";
-import { tasks } from "../tasks.js";
+import { state, getElements } from "../src/data.js";
+import { updateTaskListElement } from "../src/main.js";
+import { saveTasksOrder } from "../src/task.js";
+import { tasks } from "../src/tasks.js";
 
 let dragStartIndex;
 let dragEndIndex;
@@ -9,8 +10,7 @@ export function dragStart(event) {
 	dragStartIndex = +this.closest("li").dataset.index;
 	this.classList.add("dragging");
 
-	const taskElements = document.getElementsByClassName("task");
-	for (const taskElement of taskElements) {
+	for (const taskElement of getElements("task")) {
 		const taskNumber = taskElement.dataset.num;
 		const taskIndex = taskElement.dataset.index;
 
@@ -40,5 +40,3 @@ export function dragLeave(event) {
 	event.preventDefault();
 	this.classList.remove("over");
 }
-
-export function dragEnd(event) {}

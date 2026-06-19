@@ -1,3 +1,4 @@
+import { sortOptions, state, html, getElements } from "./data.js";
 import { tasks, updateTasks, createTasksElements, saveTasks } from "./tasks.js";
 import {
 	addTask,
@@ -7,31 +8,7 @@ import {
 	saveTasksOrder,
 	createGrabIconElement,
 } from "./task.js";
-
-import { sort, createSortBtnElement } from "./utils/sort.js";
-
-export const sortOptions = ["custom", "A-Z", "Z-A"];
-
-export let state = {
-	sorting: false,
-	dragging: false,
-};
-
-// DOM ELEMENTS
-
-const mainHeaderElement = document.getElementById("main_header");
-
-/**
- * The list container where task items are rendered.
- * @type {HTMLUListElement | null}
- */
-const taskList = document.querySelector(".tasks-list");
-
-/**
- * The input field for entering a new task label.
- * @type {HTMLInputElement | null}
- */
-const newTaskInput = document.querySelector(".input-newTask");
+import { sort, createSortBtnElement } from "../utils/sort.js";
 
 /**
  * Updates the task list by optionally replacing the task data and rerendering the task list.
@@ -40,12 +17,11 @@ const newTaskInput = document.querySelector(".input-newTask");
  */
 export function updateTaskListElement(newTasksArray, mode) {
 	newTasksArray && updateTasks(newTasksArray);
-	taskList.innerHTML = "";
-	taskList.appendChild(createTasksElements(tasks));
+	html.tasks.list.innerHTML = "";
+	html.tasks.list.appendChild(createTasksElements(tasks));
 
 	if (mode === "sorting") {
-		const taskElements = document.getElementsByClassName("task");
-		for (const element of taskElements) {
+		for (const element of getElements("task")) {
 			element.appendChild(createGrabIconElement());
 			element.querySelector(".options__btn").remove();
 		}
@@ -110,7 +86,7 @@ function taskClickHandler(event) {
 	}
 }
 
-taskList.addEventListener("mousedown", (event) => {
+html.tasks.list.addEventListener("mousedown", (event) => {
 	if (
 		event.target.closest("span") &&
 		event.target.closest("span").classList.contains("grab-icon")
@@ -118,8 +94,7 @@ taskList.addEventListener("mousedown", (event) => {
 		state.dragging = true;
 		event.target.closest("li").draggable = true;
 
-		const taskElements = document.getElementsByClassName("task");
-		for (const taskElement of taskElements) {
+		for (const taskElement of getElements("task")) {
 			const taskNumber = taskElement.dataset.num;
 			const taskIndex = taskElement.dataset.index;
 
@@ -131,10 +106,10 @@ taskList.addEventListener("mousedown", (event) => {
 });
 
 updateTaskListElement();
-mainHeaderElement.appendChild(createSortBtnElement());
+html.main.header.appendChild(createSortBtnElement());
 
 //EVENT LISTENERS
-taskList.addEventListener("click", taskClickHandler);
+html.tasks.list.addEventListener("click", taskClickHandler);
 
 document.addEventListener("mouseup", (event) => {
 	if (state.dragging) {
@@ -146,7 +121,6 @@ document.addEventListener("mouseup", (event) => {
 document.addEventListener("submit", (event) => {
 	event.preventDefault();
 	const submitter = event.submitter;
-	console.log(submitter);
 
 	if (event.target.classList.contains("sort_form")) {
 		state.sorting = false;

@@ -1,5 +1,5 @@
-import { state, sortOptions } from "../script.js";
-import { createGrabIconElement } from "../task.js";
+import { state, sortOptions, getElements } from "../src/data.js";
+import { createGrabIconElement } from "../src/task.js";
 
 function createSortingFromElement() {
 	const formElement = document.createElement("form");
@@ -57,8 +57,7 @@ export function sort(event) {
 	let isCustom = data.sort_options === "custom";
 
 	if (state.sorting && isCustom) {
-		const taskElements = document.getElementsByClassName("task");
-		for (const element of taskElements) {
+		for (const element of getElements("task")) {
 			element.appendChild(createGrabIconElement());
 			element.querySelector(".options__btn").remove();
 		}
