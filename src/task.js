@@ -51,7 +51,7 @@ function createTaskTextElement(text) {
 
 function createTaskOptionButtonElement() {
 	const optionBtn = document.createElement("button");
-	optionBtn.className = "icon-btn";
+	optionBtn.className = "icon_btn";
 	optionBtn.classList.add("options__btn");
 	optionBtn.innerHTML = /** icon svg */ `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
@@ -67,7 +67,7 @@ function createTaskOptionButtonElement() {
  */
 function createEditTaskButtonElement() {
 	const edit_btn = document.createElement("button");
-	edit_btn.className = "icon-btn";
+	edit_btn.className = "icon_btn";
 	edit_btn.classList.add("edit__btn");
 	edit_btn.innerHTML = /** icon svg */ `
 		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +84,7 @@ function createEditTaskButtonElement() {
  */
 function createDeleteTaskButtonElement() {
 	const delete_btn = document.createElement("button");
-	delete_btn.className = "icon-btn";
+	delete_btn.className = "icon_btn";
 	delete_btn.classList.add("delete__btn");
 	delete_btn.innerHTML = /** icon svg */ `
         <svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,8 +96,7 @@ function createDeleteTaskButtonElement() {
 
 export function createGrabIconElement() {
 	const grab_icon = document.createElement("span");
-	grab_icon.className = "grab-icon icon-btn";
-	grab_icon.classList.add("hidden");
+	grab_icon.className = "grab-icon icon_btn";
 	grab_icon.innerHTML = /** icon svg */ `
 		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<circle cx="40" cy="80" r="20" stroke="black" stroke-width="20"/>
@@ -140,11 +139,8 @@ export function createTaskElement(task) {
 	task_text.setAttribute("for", `task_${num}`);
 	task_text.dataset.index = index;
 
-	const edit_btn = createEditTaskButtonElement();
-	edit_btn.classList.add("hidden");
-
-	const delete_btn = createDeleteTaskButtonElement();
-	delete_btn.classList.add("hidden");
+	// const edit_btn = createEditTaskButtonElement();
+	// const delete_btn = createDeleteTaskButtonElement();
 
 	const taskOption_btn = createTaskOptionButtonElement();
 
@@ -176,7 +172,6 @@ export function addTask(content) {
 }
 
 // EDIT TASK
-
 /**
  * Creates a text input element pre-populated with the existing task text.
  * @param {string} prev_text - The current text of the task.
@@ -199,7 +194,7 @@ function createEditTextInputElement(prev_text) {
  */
 function createSavetButtonElement() {
 	const saveBtnElement = document.createElement("button");
-	saveBtnElement.className = "icon-btn";
+	saveBtnElement.className = "icon_btn";
 	saveBtnElement.classList.add("save__btn");
 	saveBtnElement.innerHTML = /** icon svg */ `
 		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -215,7 +210,7 @@ function createSavetButtonElement() {
  */
 function createCancelButtonElement() {
 	const cancelBtnElement = document.createElement("button");
-	cancelBtnElement.className = "icon-btn";
+	cancelBtnElement.className = "icon_btn";
 	cancelBtnElement.classList.add("cancel__btn");
 	cancelBtnElement.innerHTML = /** icon svg */ `
 		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -264,7 +259,6 @@ export function saveEdit(taskElement) {
 }
 
 // REORDER TASK
-
 /**
  * Reorders the tasks array and reassigns index and num values.
  * @param {number} prev_index - zero-based source position of the task to move.

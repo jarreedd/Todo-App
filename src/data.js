@@ -1,6 +1,7 @@
 export const sortOptions = ["custom", "A-Z", "Z-A"];
 
 export let state = {
+	viewing: false,
 	sorting: false,
 	dragging: false,
 };
@@ -14,9 +15,19 @@ export let state = {
 export const html = {
 	main: {
 		header: document.getElementById("main_header"),
+		backdrop: document.getElementById("backdrop"),
 	},
 	tasks: {
 		list: document.querySelector(".tasks-list"),
+	},
+	add: {
+		tab: document.getElementById("add_tab"),
+		toggle: document.getElementById("toggle_btn"),
+		form: document.getElementById("add_form"),
+		button: {
+			add: document.getElementById("add_btn"),
+			cancel: document.getElementById("cancel_btn"),
+		},
 	},
 };
 /**

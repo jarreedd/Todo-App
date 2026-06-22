@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
     <script type="module" src="src/main.js" defer></script>
+    <script src="https://kit.fontawesome.com/4028a43f77.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,17 +17,34 @@
 
     </header>
 
-    <form class="add_form" id="add_form">
-        <input name="task_text" type="text" class="input-newTask" placeholder="Add your task" autocomplete="off"
-            required>
 
-        <button class="add-btn btn">
-            Add
-        </button>
-    </form>
 
     <ul class="tasks-list">
     </ul>
+
+    <div class="backdrop" id="backdrop"></div>
+
+    <div class="add_tab" id="add_tab">
+        <button class="toggle_btn icon_btn" id="toggle_btn">
+            <span style="font-size:1.25em;">
+                <i class="fa fa-plus"></i>
+            </span>
+        </button>
+
+        <form class="add_form" id="add_form">
+            <input name="task_text" type="text" class="input-newTask" placeholder="Add your task" autocomplete="off"
+                required>
+            <div class="buttons">
+                <button class="add_btn btn" id="add_btn" type="submit">
+                    Add
+                </button>
+                <button class="cancel_btn btn" id="cancel_btn" type="reset">
+                    Cancel
+                </button>
+            </div>
+
+        </form>
+    </div>
 
 </body>
 

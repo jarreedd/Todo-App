@@ -86,6 +86,21 @@ function taskClickHandler(event) {
 	}
 }
 
+function toggleAddTab(event) {
+	html.main.backdrop.classList.toggle("active");
+	html.add.tab.classList.toggle("active");
+	html.add.form.classList.toggle("active");
+}
+
+updateTaskListElement();
+html.main.header.appendChild(createSortBtnElement());
+
+//EVENT LISTENERS
+html.tasks.list.addEventListener("click", taskClickHandler);
+html.add.toggle.addEventListener("click", toggleAddTab);
+html.add.button.cancel.addEventListener("click", toggleAddTab);
+html.main.backdrop.addEventListener("click", toggleAddTab);
+
 html.tasks.list.addEventListener("mousedown", (event) => {
 	if (
 		event.target.closest("span") &&
@@ -104,12 +119,6 @@ html.tasks.list.addEventListener("mousedown", (event) => {
 		}
 	}
 });
-
-updateTaskListElement();
-html.main.header.appendChild(createSortBtnElement());
-
-//EVENT LISTENERS
-html.tasks.list.addEventListener("click", taskClickHandler);
 
 document.addEventListener("mouseup", (event) => {
 	if (state.dragging) {
@@ -131,5 +140,6 @@ document.addEventListener("submit", (event) => {
 
 	if (event.target.classList.contains("add_form")) {
 		addTaskFormHandler(event);
+		toggleAddTab();
 	}
 });
