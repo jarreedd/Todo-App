@@ -33,11 +33,16 @@
     background-color: transparent;
     display: flex;
     align-items: center;
-    /* justify-self: center; */
+    justify-content: center;
     position: relative;
+    width: 1.75rem;
     aspect-ratio: 1;
-    margin-left: 8px;
+    /* margin-left: 8px; */
+    i {
+        font-size: 1.25em;
+    }
 }
+
 .icon_btn::before {
     content: '';
     position: absolute;
@@ -47,6 +52,12 @@
     height: 100%;
     background-color: transparent;
     z-index: 1;
+}
+
+.icon_btn:hover {
+    i {
+        color: #a3a3a3;
+    }
 }
 
 body {
@@ -140,7 +151,7 @@ header.main_header {
         position: relative;
         justify-self: end;
         top: 0;
-        background-color: rgb(128, 128, 128);
+        background-color: #808080;
         color: #ffffff;
         border: none;
         outline: none;
@@ -153,9 +164,13 @@ header.main_header {
         margin: 0.75rem;
     }
 
+    
+
     .toggle_btn:hover {
         cursor: pointer;
-        background-color: rgba(128, 128, 128, 0.5);
+        i {
+            color: #bfbfbf;
+        }
     }
 
     .toggle_btn:active {
@@ -215,6 +230,7 @@ header.main_header {
     .task {
         margin: 8px;
         position: relative;
+        height: 28px;
         display: grid;
         /* grid-template-columns: 27px calc(100% - 87px) 30px 30px; */
         grid-template-columns: 27px calc(100% - 57px) 30px;
@@ -259,30 +275,12 @@ header.main_header {
             color: #808080;
         }
 
-        
-
-        
-
         .options__btn {
             display: none;
             height: 100%;
         }
         .options__btn:hover > svg path{
             fill: #a3a3a3;
-        }
-
-        .delete__btn.hidden {
-            display: none;
-        }
-        .delete__btn:hover > svg path{
-            fill: rgb(190, 0, 0);
-        }
-
-        .edit__btn.hidden {
-            display: none;
-        }
-        .edit__btn:hover > svg path{
-            fill:#838383;
         }
 
         .save__btn:hover > svg path{

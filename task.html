@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <script type="module" src="src/taskViewing.js" defer></script>
+    <script type="module" src="src/data.js" defer></script>
+    <script src="https://kit.fontawesome.com/4028a43f77.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/task.css">
+</head>
+
+<body>
+    <header class="task_header header" id="task_header">
+        <button class="back_btn icon_btn" id="back_btn">
+            <i class="fa-solid fa-arrow-left-long"></i>
+        </button>
+
+        <button class="delete_btn icon_btn" id="delete_btn">
+            <i class="fa-regular fa-trash-can"></i>
+        </button>
+    </header>
+
+    <main class="task_main" id="task_main">
+        <div class="task_heading" id="task_heading">
+            <p class="task_text" id="task_text">Task Text</p>
+
+            <button class="edit_btn icon_btn" id="edit_btn">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+
+        </div>
+
+        <div class="task_details" id="task_details">
+            <form class="status_form" id="status_form">
+                <label for="status_options" class="status_label">
+                    Status:
+                </label>
+                <select name="status_options" id="status_options" class="status_options">
+                    <option value="not started">Not Started</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </form>
+
+            <p class="date_created" id="date_created">Date created: <span class="date" id="date">DD/MM/YYYY</span></p>
+        </div>
+    </main>
+</body>
+
+</html>
+
+<!-- <form class="sort_form" id="sort_form"><label class="sort_label" for="sort_options">Sort by:</label><select
+        name="sort_options" id="sort_options" class="sort_options">
+        <option value="custom">custom</option>
+        <option value="A-Z">A-Z</option>
+        <option value="Z-A">Z-A</option>
+    </select><button type="submit" id="done-sorting_btn" class="done-sorting_btn btn">Done</button></form> -->

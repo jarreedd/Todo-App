@@ -1,0 +1,43 @@
+
+
+.task_header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #808080;
+
+    .back_btn, .delete_btn {
+        color: #ffffff;
+    }
+
+    .delete_btn:hover {
+        i {
+            color: rgb(190, 0, 0);
+        }
+    }
+    
+    
+}
+
+.task_main {
+    padding: 0 1rem;
+
+    .task_heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1rem 0;
+
+        .task_text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .edit_btn:hover {
+            i {
+                color:#838383;
+            }
+        }
+    }
+}

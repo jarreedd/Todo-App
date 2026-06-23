@@ -29,6 +29,21 @@ export const html = {
 			cancel: document.getElementById("cancel_btn"),
 		},
 	},
+	task: {
+		text: document.getElementById("task_text"),
+		button: {
+			edit: document.getElementById("edit_btn"),
+			back: document.getElementById("back_btn"),
+			delete: document.getElementById("delete_btn"),
+		},
+		from: {
+			status: document.getElementById("status_form"),
+			options: document.getElementById("status_options"),
+		},
+		date: {
+			created: document.querySelector(".date_created .date"),
+		},
+	},
 };
 /**
  * @param {string} className

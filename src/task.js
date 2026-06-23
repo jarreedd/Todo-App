@@ -1,6 +1,8 @@
 import { tasks, saveTasks } from "./tasks.js";
 import { moveItem } from "../utils/moveItem.js";
 import { updateTaskListElement } from "./main.js";
+import { state } from "./data.js";
+import { gotoHomePage } from "./taskViewing.js";
 
 // CREATE TASK
 /**
@@ -49,6 +51,13 @@ function createTaskTextElement(text) {
 	return task_text;
 }
 
+function gotoTaskPage(event) {
+	const index = event.target.parentElement.dataset.index;
+
+	location.href = `../task.html#${index}`;
+	event.target.removeEventListener(gotoTaskPage);
+}
+
 function createTaskOptionButtonElement() {
 	const optionBtn = document.createElement("button");
 	optionBtn.className = "icon_btn";
@@ -58,6 +67,9 @@ function createTaskOptionButtonElement() {
 			<path d="M320 208C289.1 208 264 182.9 264 152C264 121.1 289.1 96 320 96C350.9 96 376 121.1 376 152C376 182.9 350.9 208 320 208zM320 432C350.9 432 376 457.1 376 488C376 518.9 350.9 544 320 544C289.1 544 264 518.9 264 488C264 457.1 289.1 432 320 432zM376 320C376 350.9 350.9 376 320 376C289.1 376 264 350.9 264 320C264 289.1 289.1 264 320 264C350.9 264 376 289.1 376 320z"/>
 		</svg>
     `;
+
+	optionBtn.addEventListener("click", gotoTaskPage);
+
 	return optionBtn;
 }
 
@@ -280,8 +292,8 @@ export function saveTasksOrder(prev_index, new_index) {
  * @param {HTMLElement} taskElement - The DOM element representing the task to delete.
  * @returns {void}
  */
-export function deleteTask(taskElement) {
-	let index = taskElement.dataset.index;
+export function deleteTask(event) {
+	let index = event.target.dataset.index;
 	tasks.splice(index, 1); // Mutates tasks array, dont need old structure
 
 	// DO NOT USE array.splice() WHEN THE PREVIOUS VERSION
@@ -293,4 +305,5 @@ export function deleteTask(taskElement) {
 		task.num = index + 1;
 	});
 	saveTasks(tasks);
+	gotoHomePage();
 }

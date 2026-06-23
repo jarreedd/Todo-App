@@ -77,10 +77,6 @@ function taskClickHandler(event) {
 				case "cancel-edit-btn":
 					updateTaskListElement();
 					break;
-				case "delete__btn":
-					deleteTask(taskElement);
-					updateTaskListElement();
-					break;
 			}
 		});
 	}
@@ -92,16 +88,7 @@ function toggleAddTab(event) {
 	html.add.form.classList.toggle("active");
 }
 
-updateTaskListElement();
-html.main.header.appendChild(createSortBtnElement());
-
-//EVENT LISTENERS
-html.tasks.list.addEventListener("click", taskClickHandler);
-html.add.toggle.addEventListener("click", toggleAddTab);
-html.add.button.cancel.addEventListener("click", toggleAddTab);
-html.main.backdrop.addEventListener("click", toggleAddTab);
-
-html.tasks.list.addEventListener("mousedown", (event) => {
+function mouseDownHandler(event) {
 	if (
 		event.target.closest("span") &&
 		event.target.closest("span").classList.contains("grab-icon")
@@ -118,16 +105,16 @@ html.tasks.list.addEventListener("mousedown", (event) => {
 			taskElement.textContent = `TASK ${taskNumber}: ${tasks[taskIndex].text}`;
 		}
 	}
-});
+}
 
-document.addEventListener("mouseup", (event) => {
+function mouseUpHandler(event) {
 	if (state.dragging) {
 		updateTaskListElement();
 		state.dragging = false;
 	}
-});
+}
 
-document.addEventListener("submit", (event) => {
+function submitHandler(event) {
 	event.preventDefault();
 	const submitter = event.submitter;
 
@@ -142,4 +129,21 @@ document.addEventListener("submit", (event) => {
 		addTaskFormHandler(event);
 		toggleAddTab();
 	}
+}
+
+window.addEventListener("load", (event) => {
+	state.viewing = window.location.pathname === "/task.html";
+	if (state.viewing) return;
+
+	updateTaskListElement();
+	html.main.header.appendChild(createSortBtnElement());
+
+	//EVENT LISTENERS
+	html.tasks.list.addEventListener("click", taskClickHandler);
+	html.add.toggle.addEventListener("click", toggleAddTab);
+	html.add.button.cancel.addEventListener("click", toggleAddTab);
+	html.main.backdrop.addEventListener("click", toggleAddTab);
+	html.tasks.list.addEventListener("mousedown", mouseDownHandler);
+	document.addEventListener("mouseup", mouseUpHandler);
+	document.addEventListener("submit", submitHandler);
 });
