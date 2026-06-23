@@ -61,7 +61,7 @@ function gotoTaskPage(event) {
 function createTaskOptionButtonElement() {
 	const optionBtn = document.createElement("button");
 	optionBtn.className = "icon_btn";
-	optionBtn.classList.add("options__btn");
+	optionBtn.classList.add("options_btn");
 	optionBtn.innerHTML = /** icon svg */ `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
 			<path d="M320 208C289.1 208 264 182.9 264 152C264 121.1 289.1 96 320 96C350.9 96 376 121.1 376 152C376 182.9 350.9 208 320 208zM320 432C350.9 432 376 457.1 376 488C376 518.9 350.9 544 320 544C289.1 544 264 518.9 264 488C264 457.1 289.1 432 320 432zM376 320C376 350.9 350.9 376 320 376C289.1 376 264 350.9 264 320C264 289.1 289.1 264 320 264C350.9 264 376 289.1 376 320z"/>
@@ -80,7 +80,7 @@ function createTaskOptionButtonElement() {
 function createEditTaskButtonElement() {
 	const edit_btn = document.createElement("button");
 	edit_btn.className = "icon_btn";
-	edit_btn.classList.add("edit__btn");
+	edit_btn.classList.add("edit_btn");
 	edit_btn.innerHTML = /** icon svg */ `
 		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M181.518 21C184.214 21 186.884 21.5312 189.375 22.5635C191.71 23.5313 193.846 24.9215 195.674 26.6631L196.035 27.0166L213.033 44.1172C216.855 47.9605 219 53.1592 219 58.5781C219 63.9966 216.855 69.1949 213.034 73.0381L80.8057 205.656C79.5367 206.904 77.9506 207.782 76.2188 208.193L76.208 208.196L33.2344 218.936C32.4751 219.023 31.7081 219.021 30.9492 218.93L30.8291 218.915L30.709 218.93C29.951 219.021 29.1851 219.022 28.4268 218.936C27.1725 218.627 25.9916 218.073 24.9531 217.305C23.8999 216.525 23.0144 215.542 22.3496 214.413C21.6847 213.284 21.2536 212.032 21.083 210.733C20.9124 209.435 21.0057 208.115 21.3564 206.853L21.3623 206.827L32.1172 163.818L32.1182 163.819C32.5864 162.08 33.4972 160.491 34.7637 159.21L34.7646 159.211L167 27.0166C168.906 25.1094 171.169 23.5958 173.66 22.5635C176.151 21.5313 178.821 21 181.518 21ZM148.478 73.0381L50.6729 170.92L50.4775 171.115L50.4102 171.383L44.708 194.079L44.3027 195.691L45.917 195.293L68.6191 189.7L68.8906 189.634L69.0869 189.437L167 91.5547L167.707 90.8467L167 90.1396L149.892 73.0371L149.185 72.3301L148.478 73.0381ZM180.754 40.7705L163.754 57.873L163.054 58.5781L163.754 59.2832L180.754 76.3857L181.461 77.0967L182.171 76.3877L199.278 59.2852L199.985 58.5781L199.278 57.8711L182.171 40.7686L181.461 40.0596L180.754 40.7705Z" fill="black" stroke="black" stroke-width="2"/>
@@ -151,17 +151,12 @@ export function createTaskElement(task) {
 	task_text.setAttribute("for", `task_${num}`);
 	task_text.dataset.index = index;
 
-	// const edit_btn = createEditTaskButtonElement();
-	// const delete_btn = createDeleteTaskButtonElement();
-
 	const taskOption_btn = createTaskOptionButtonElement();
 
 	li.appendChild(checkboxElement);
 	li.appendChild(custom_checkedbox);
 	li.appendChild(task_text);
 	li.appendChild(taskOption_btn);
-	// li.appendChild(edit_btn);
-	// li.appendChild(delete_btn);
 
 	return li;
 }
@@ -186,14 +181,15 @@ export function addTask(content) {
 // EDIT TASK
 /**
  * Creates a text input element pre-populated with the existing task text.
- * @param {string} prev_text - The current text of the task.
+ * @param {string} text - The current text of the task.
  * @returns {HTMLInputElement} The edit input element.
  */
-function createEditTextInputElement(prev_text) {
+function createEditTextInputElement(text) {
 	const edit_text = document.createElement("input");
 	edit_text.type = "text";
-	edit_text.className = "edit__text";
-	edit_text.value = prev_text;
+	edit_text.className = "edit_text";
+	edit_text.id = "edit_text";
+	edit_text.value = text;
 	edit_text.autocomplete = false;
 	edit_text.required = true;
 
@@ -204,14 +200,12 @@ function createEditTextInputElement(prev_text) {
  * Creates a save button for editing or reordering tasks.
  * @returns {HTMLButtonElement} The save button element.
  */
-function createSavetButtonElement() {
+function createSaveButtonElement() {
 	const saveBtnElement = document.createElement("button");
 	saveBtnElement.className = "icon_btn";
-	saveBtnElement.classList.add("save__btn");
+	saveBtnElement.classList.add("save_btn");
 	saveBtnElement.innerHTML = /** icon svg */ `
-		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M195 60L90 180L45 135" stroke="black" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-		</svg>
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/></svg>
 	`;
 	return saveBtnElement;
 }
@@ -223,50 +217,43 @@ function createSavetButtonElement() {
 function createCancelButtonElement() {
 	const cancelBtnElement = document.createElement("button");
 	cancelBtnElement.className = "icon_btn";
-	cancelBtnElement.classList.add("cancel__btn");
+	cancelBtnElement.classList.add("cancel_btn");
 	cancelBtnElement.innerHTML = /** icon svg */ `
-		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M58.2539 45.5C61.6364 45.5 64.8806 46.8437 67.2725 49.2354L120 101.963L172.727 49.2363C175.118 46.8488 178.361 45.5088 181.74 45.5117C185.12 45.5147 188.36 46.8603 190.747 49.252C193.06 51.569 194.39 54.6842 194.468 57.9492L194.472 58.2656C194.469 61.6451 193.123 64.8849 190.731 67.2725L138.004 120L138.357 120.354L190.765 172.728C193.156 175.119 194.5 178.364 194.5 181.746C194.5 185.129 193.156 188.373 190.765 190.765C188.373 193.156 185.129 194.5 181.746 194.5C178.364 194.5 175.119 193.156 172.728 190.765L120 138.037L67.2725 190.765C64.8806 193.156 61.6364 194.5 58.2539 194.5C54.8714 194.5 51.6272 193.156 49.2354 190.765C46.8435 188.373 45.5001 185.129 45.5 181.746C45.5 178.364 46.8437 175.119 49.2354 172.728L101.963 120L49.2354 67.2725C46.8437 64.8806 45.5 61.6364 45.5 58.2539C45.5001 54.8714 46.8435 51.6272 49.2354 49.2354C51.6272 46.8435 54.8714 45.5001 58.2539 45.5Z" fill="black" stroke="black"/>
-		</svg>
-
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M88 256L232 256C241.7 256 250.5 250.2 254.2 241.2C257.9 232.2 255.9 221.9 249 215L202.3 168.3C277.6 109.7 386.6 115 455.8 184.2C530.8 259.2 530.8 380.7 455.8 455.7C380.8 530.7 259.3 530.7 184.3 455.7C174.1 445.5 165.3 434.4 157.9 422.7C148.4 407.8 128.6 403.4 113.7 412.9C98.8 422.4 94.4 442.2 103.9 457.1C113.7 472.7 125.4 487.5 139 501C239 601 401 601 501 501C601 401 601 239 501 139C406.8 44.7 257.3 39.3 156.7 122.8L105 71C98.1 64.2 87.8 62.1 78.8 65.8C69.8 69.5 64 78.3 64 88L64 232C64 245.3 74.7 256 88 256z"/></svg>
 	`;
 	return cancelBtnElement;
 }
 
 /**
  * Transforms a task list item into an edit form.
- * @param {HTMLElement} taskElement - The task list item element to convert.
+ * @param {string} text - The current text of the task.
  * @returns {void}
  */
-export function createEditTaskElement(taskElement) {
-	let index = taskElement.dataset.index;
-	let prev_text = tasks[index].text; // args for func should be task element and tasks array
+export function createEditTaskElement(text) {
+	const fragment = document.createDocumentFragment();
+	const edit_text = createEditTextInputElement(text);
 
-	const edit_text = createEditTextInputElement(prev_text);
-
-	const save_btn = createSavetButtonElement();
-	save_btn.classList.add("save-edit-btn");
+	const save_btn = createSaveButtonElement();
+	save_btn.classList.add("save_edit_btn");
 
 	const cancel_btn = createCancelButtonElement();
-	cancel_btn.classList.add("cancel-edit-btn");
+	cancel_btn.classList.add("cancel_edit_btn");
 
-	taskElement.classList.add("task__editing");
-	taskElement.innerHTML = "";
-	taskElement.appendChild(edit_text);
-	taskElement.appendChild(save_btn);
-	taskElement.appendChild(cancel_btn);
+	fragment.appendChild(edit_text);
+	fragment.appendChild(save_btn);
+	fragment.appendChild(cancel_btn);
+
+	return fragment;
 }
 
 /**
  * Saves the edited task text back to the task store.
- * @param {HTMLElement} taskElement - The task list item containing the edited text.
+ * @param {string} newText - The new text of the task.
+ * @param {number} index - Unique task identifier.
  * @returns {void}
  */
-export function saveEdit(taskElement) {
-	const text = taskElement.querySelector(".edit__text").value;
-	const index = taskElement.dataset.index;
-	tasks[index].text = text;
-
+export function saveTextEdit(newText, index) {
+	tasks[index].text = newText;
 	saveTasks(tasks);
 }
 
@@ -305,5 +292,5 @@ export function deleteTask(event) {
 		task.num = index + 1;
 	});
 	saveTasks(tasks);
-	gotoHomePage();
+	gotoHomePage(event);
 }

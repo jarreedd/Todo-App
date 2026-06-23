@@ -2,9 +2,7 @@ import { sortOptions, state, html, getElements } from "./data.js";
 import { tasks, updateTasks, createTasksElements, saveTasks } from "./tasks.js";
 import {
 	addTask,
-	createEditTaskElement,
-	saveEdit,
-	deleteTask,
+	saveTextEdit,
 	saveTasksOrder,
 	createGrabIconElement,
 } from "./task.js";
@@ -23,7 +21,7 @@ export function updateTaskListElement(newTasksArray, mode) {
 	if (mode === "sorting") {
 		for (const element of getElements("task")) {
 			element.appendChild(createGrabIconElement());
-			element.querySelector(".options__btn").remove();
+			element.querySelector(".options_btn").remove();
 		}
 	}
 }
@@ -49,8 +47,6 @@ function addTaskFormHandler(event) {
  * @returns {void}
  */
 function taskClickHandler(event) {
-	// event.preventDefault();
-
 	if (
 		event.target.tagName === "LI" ||
 		event.target.classList.contains("custom-checkedbox") ||
@@ -59,26 +55,6 @@ function taskClickHandler(event) {
 		let index = event.target.dataset.index;
 		tasks[index].isChecked = tasks[index].isChecked ? false : true;
 		saveTasks(tasks);
-	}
-
-	if (event.target.tagName === "BUTTON") {
-		const taskElement = event.target.closest("li");
-
-		let classList = event.target.classList;
-		classList.forEach((item) => {
-			switch (item) {
-				case "edit__btn":
-					createEditTaskElement(taskElement);
-					break;
-				case "save-edit-btn":
-					saveEdit(taskElement);
-					updateTaskListElement();
-					break;
-				case "cancel-edit-btn":
-					updateTaskListElement();
-					break;
-			}
-		});
 	}
 }
 

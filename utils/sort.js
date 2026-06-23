@@ -59,7 +59,7 @@ export function sort(event) {
 	if (state.sorting && isCustom) {
 		for (const element of getElements("task")) {
 			element.appendChild(createGrabIconElement());
-			element.querySelector(".options__btn").remove();
+			element.querySelector(".options_btn").remove();
 		}
 	}
 }

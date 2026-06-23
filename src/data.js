@@ -30,6 +30,7 @@ export const html = {
 		},
 	},
 	task: {
+		heading: document.getElementById("task_heading"),
 		text: document.getElementById("task_text"),
 		button: {
 			edit: document.getElementById("edit_btn"),
