@@ -1,8 +1,19 @@
 import { html, state } from "./data.js";
-import { tasks } from "./tasks.js";
+import { tasks, saveTasks } from "./tasks.js";
 import { deleteTask } from "./task.js";
 
+let index;
+
+function saveUpdates() {
+	const form = html.task.from.status;
+	const formData = new FormData(form);
+	const data = Object.fromEntries(formData);
+	tasks[index].isChecked = data.status_options === "completed";
+	saveTasks(tasks);
+}
+
 export function gotoHomePage(event) {
+	saveUpdates();
 	location.href = "../index.html";
 }
 
@@ -11,7 +22,7 @@ window.addEventListener("load", (event) => {
 
 	if (!state.viewing) return;
 
-	const index = location.hash.slice(1);
+	index = location.hash.slice(1);
 	const task = tasks[index];
 	const { isChecked, text, num } = task;
 
