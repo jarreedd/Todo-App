@@ -5,7 +5,11 @@ A lightweight task manager built with HTML, CSS, and vanilla JavaScript for addi
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fedaf3fb-c719-4c3b-ae3d-56f66ac349aa/deploy-status)](https://app.netlify.com/sites/reeddev-todo/deploys)
 **Link:** [todo-reedwebdev.netlify.app](https://todo-reedwebdev.netlify.app/)
 
-![alt text](img/image1.png)
+<div style="display:grid; grid-template-columns:repeat(2,1fr);gap:8px">
+<img src="img/image2.png"><img src="img/image3.png"><img src="img/image4.png"><img src="img/image5.png">
+</div>
+
+
 
 ## ✅ Features
 
@@ -37,15 +41,13 @@ A lightweight task manager built with HTML, CSS, and vanilla JavaScript for addi
 - `utils/moveItem.js` — helper for task reordering
 - `utils/drag.js` — helpers for drag-and-drop reordering
 
-## 💡 Notes
-
-- Editing multiple tasks at the same time should not be allowed; this still needs to be fixed.
-
 ## 🔧 Future Improvements
 
-- Due dates and reminders
+- Select multiple tasks for delete or archive
+- Dates created and Due dates
 - Categories and tags
-- Task filtering by category or due date
+- Order by name, category, due- and creation- date
+- Task filtering by category
 - Subtasks support
 - Backend sync and authentication
 
@@ -53,6 +55,6 @@ A lightweight task manager built with HTML, CSS, and vanilla JavaScript for addi
 
 Contributions are welcome. Open issues or submit pull requests for improvements.
 
-## Reminder:
+## 💡 Notes
 
 Update `style.css` with proper attributes. Create a naming guideline for styles and query selectors, using classes for styling and ids or dataset attributes for querying.
