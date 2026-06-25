@@ -10,9 +10,14 @@
     cursor: auto;
 }
 
+html {
+    height: -webkit-fill-available;
+}
+
 body{
-    height: 100dvh;
     position: relative;
+    height: 100dvh;
+    height: -webkit-fill-available;
 }
 
 .btn {
