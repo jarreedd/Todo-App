@@ -25,7 +25,7 @@ function createCheckboxElement(isChecked) {
  */
 function createCustomCheckedboxElement() {
 	const custom_checkedbox = document.createElement("label");
-	custom_checkedbox.className = "custom-checkedbox";
+	custom_checkedbox.className = "custom_checkedbox";
 	custom_checkedbox.innerHTML = /** icon svg */ `
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path 
@@ -45,7 +45,7 @@ function createCustomCheckedboxElement() {
  */
 function createTaskTextElement(text) {
 	const task_text = document.createElement("label");
-	task_text.className = "task__text";
+	task_text.className = "task_text";
 	task_text.innerText = text;
 
 	return task_text;
@@ -53,8 +53,7 @@ function createTaskTextElement(text) {
 
 function gotoTaskPage(event) {
 	const index = event.target.parentElement.dataset.index;
-
-	location.href = `../task.html#${index}`;
+	location.href = `/task.html?id=${index}`;
 	event.target.removeEventListener(gotoTaskPage);
 }
 
@@ -97,7 +96,7 @@ function createEditTaskButtonElement() {
 function createDeleteTaskButtonElement() {
 	const delete_btn = document.createElement("button");
 	delete_btn.className = "icon_btn";
-	delete_btn.classList.add("delete__btn");
+	delete_btn.classList.add("delete_btn");
 	delete_btn.innerHTML = /** icon svg */ `
         <svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M153.333 10H86.6667C74.4111 10 64.4444 19.867 64.4444 32V54H20V76H42.2222V208C42.2222 220.133 52.1889 230 64.4444 230H175.556C187.811 230 197.778 220.133 197.778 208V76H220V54H175.556V32C175.556 19.867 165.589 10 153.333 10ZM86.6667 32H153.333V54H86.6667V32ZM175.556 208H64.4444V76H175.556V208Z" fill="black"/>
@@ -108,7 +107,7 @@ function createDeleteTaskButtonElement() {
 
 export function createGrabIconElement() {
 	const grab_icon = document.createElement("span");
-	grab_icon.className = "grab-icon icon_btn";
+	grab_icon.className = "grab_icon icon_btn";
 	grab_icon.innerHTML = /** icon svg */ `
 		<svg width="24" height="24" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<circle cx="40" cy="80" r="20" stroke="black" stroke-width="20"/>
@@ -274,6 +273,7 @@ export function saveTasksOrder(prev_index, new_index) {
 	return new_tasks_order;
 }
 
+// DELETE TASK
 /**
  * Removes a task from the list and updates indices for remaining tasks.
  * @param {HTMLElement} taskElement - The DOM element representing the task to delete.

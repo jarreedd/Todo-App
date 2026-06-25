@@ -49,7 +49,7 @@ function addTaskFormHandler(event) {
 function taskClickHandler(event) {
 	if (
 		event.target.tagName === "LI" ||
-		event.target.classList.contains("custom-checkedbox") ||
+		event.target.classList.contains("custom_checkedbox") ||
 		event.target.classList.contains("uncheckedbox")
 	) {
 		let index = event.target.dataset.index;
@@ -67,7 +67,7 @@ function toggleAddTab(event) {
 function mouseDownHandler(event) {
 	if (
 		event.target.closest("span") &&
-		event.target.closest("span").classList.contains("grab-icon")
+		event.target.closest("span").classList.contains("grab_icon")
 	) {
 		state.dragging = true;
 		event.target.closest("li").draggable = true;

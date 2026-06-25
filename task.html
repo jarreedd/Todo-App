@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/task.css">
     <script type="module" src="src/taskViewing.js" defer></script>
     <script type="module" src="src/data.js" defer></script>
     <script src="https://kit.fontawesome.com/4028a43f77.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/task.css">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
 
     <main class="task_main" id="task_main">
         <div class="task_heading" id="task_heading">
-            <p class="task_text" id="task_text">Task Text</p>
+            <p class="task_text" id="task_text">loading...</p>
 
             <button class="edit_btn icon_btn" id="edit_btn">
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -50,10 +51,3 @@
 </body>
 
 </html>
-
-<!-- <form class="sort_form" id="sort_form"><label class="sort_label" for="sort_options">Sort by:</label><select
-        name="sort_options" id="sort_options" class="sort_options">
-        <option value="custom">custom</option>
-        <option value="A-Z">A-Z</option>
-        <option value="Z-A">Z-A</option>
-    </select><button type="submit" id="done-sorting_btn" class="done-sorting_btn btn">Done</button></form> -->

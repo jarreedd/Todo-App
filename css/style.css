@@ -63,34 +63,43 @@
 body {
     width: 100%;
     height: 100vh;
+    overflow-y: hidden;
     position: relative;
     background-color: #ffffff;
 }
 
-header.main_header {
+.main_header {
     width: 100%;
+    height: 80px;
     z-index: 1;
     background-color: #808080;
     padding: .5rem ;
     display: grid;
-    grid-template-columns: max-content 1fr max-content;
+    grid-template-columns: max-content max-content;
     grid-template-rows: min-content 1fr;
 
     p{
         color:#b4b4b4;
         font-size: 0.8rem;
+        margin-top: auto;
     }
 
     h1 {
         color: #efefef;
-        font-size: 3rem;
+        font-size: 2rem;
         line-height: 1;
         display: inline-block;
         grid-row: 2 / 3;
     }
 
-    button.sort_btn {
-        
+    .account_btn {
+        color: #ffffffbf;
+        grid-row: 1/2;
+        grid-column: 3/4;
+        margin-left: auto;
+    }
+
+    .sort_btn {
         grid-row: 2/3;
         grid-column: 3/4;
         width: min-content;
@@ -99,7 +108,7 @@ header.main_header {
         justify-self: end;
     }
 
-    form.sort_form {
+    .sort_form {
         font-size: .9rem;
         grid-row: 2/3;
         grid-column: 3/4;
@@ -107,7 +116,7 @@ header.main_header {
         display: flex;
         gap: 0.5rem;
         align-items: end;
-        justify-items: end;
+        margin-left: auto;
         padding: 0;
         
         .sort_label {
@@ -135,6 +144,7 @@ header.main_header {
     background-color: rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
+    transition: all 0.3s;
 }
 .backdrop.active {
     opacity: 1;
@@ -144,8 +154,9 @@ header.main_header {
 .add_tab {
     background-color: #bfbfbf;
     position: absolute;
-    bottom: 0;
+    bottom: -100px;
     width: 100%;
+    transition: all 0.3s;
 
     .toggle_btn {
         position: relative;
@@ -162,6 +173,7 @@ header.main_header {
         align-items: center;
         justify-content: center;
         margin: 0.75rem;
+        transition: all 0.5s;
     }
 
     
@@ -179,10 +191,13 @@ header.main_header {
 
     .add_form {
     width: 100%;
-    padding: 1rem;
-    display: none;
     max-width: 500px;
+    height: 100px;
+    padding: 1rem;
     margin: auto;
+    display:grid;
+    gap: .5rem;
+    grid-template-rows: repeat(2, 1fr);
 
         input {
             width: 100%;
@@ -203,17 +218,15 @@ header.main_header {
 
         
     }
-
-    .add_form.active {
-        display:grid;
-        gap: .5rem;
-        grid-template-rows: repeat(2, 1fr);
-        
-    }
 }
 
 .add_tab.active {
     background-color: #fff;
+    bottom: 0px;
+
+    .toggle_btn {
+        transform: rotate(45deg);
+    }
 }
 
 
@@ -241,7 +254,7 @@ header.main_header {
             display: none;
         }
 
-        .custom-checkedbox{
+        .custom_checkedbox{
             border: 2px solid #808080;
             border-radius: 2px;
             height: 25px;
@@ -257,8 +270,7 @@ header.main_header {
             }
         }
 
-        .task__text {
-            /* height: 25px; */
+        .task_text {
             font-size: 18px;
             padding-left: 4px;
             overflow: hidden;
@@ -266,11 +278,11 @@ header.main_header {
 
         }
 
-        input[type="checkbox"]:checked ~ .custom-checkedbox svg path {
+        input[type="checkbox"]:checked ~ .custom_checkedbox svg path {
             stroke: #808080;
         }
 
-        input[type="checkbox"]:checked ~ .task__text {
+        input[type="checkbox"]:checked ~ .task_text {
             text-decoration: line-through;
             color: #808080;
         }
@@ -319,6 +331,34 @@ header.main_header {
 
     .task_order.over {
         background-color: #6d6d6d;
+    }
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(root) {
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(root) {
+    animation-name: slide-out;
+}
+
+::view-transition-new(root) {
+    animation-name: slide-in;
+}
+
+@keyframes slide-out {
+    to {
+        translate: -100vw;
+    }
+}
+@keyframes slide-in {
+    from {
+        translate: 100vw;
     }
 }
 

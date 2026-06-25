@@ -15,7 +15,7 @@ function saveUpdates() {
 export function gotoHomePage(event) {
 	if (event.target.classList.contains("back_btn")) saveUpdates();
 
-	location.href = "../index.html";
+	location.href = "/";
 }
 
 function createTaskViewElement(text) {
@@ -57,7 +57,7 @@ window.addEventListener("load", (event) => {
 
 	if (!state.viewing) return;
 
-	index = location.hash.slice(1);
+	index = new URLSearchParams(window.location.search).get("id");
 	const task = tasks[index];
 	const { isChecked, text, num } = task;
 

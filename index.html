@@ -3,17 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
+    <link rel="stylesheet" href="./css/style.css">
     <script type="module" src="src/main.js" defer></script>
     <script src="https://kit.fontawesome.com/4028a43f77.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <header class="main_header header" id="main_header">
         <p>What tasks do you have</p>
         <h1>To-do</h1>
+
+        <button class="account_btn icon_btn" id="account_btn">
+            <i class="fa-regular fa-circle-user"></i>
+        </button>
     </header>
 
     <ul class="tasks-list">
@@ -27,7 +32,7 @@
         </button>
 
         <form class="add_form" id="add_form">
-            <input name="task_text" type="text" class="input-newTask" placeholder="Add your task" autocomplete="off"
+            <input name="task_text" type="text" class="new_task__text" placeholder="Add your task" autocomplete="off"
                 required>
             <div class="buttons">
                 <button class="add_btn btn" id="add_btn" type="submit">
