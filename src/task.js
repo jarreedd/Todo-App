@@ -27,7 +27,7 @@ function createCustomCheckedboxElement() {
 	const custom_checkedbox = document.createElement("label");
 	custom_checkedbox.className = "custom_checkedbox";
 	custom_checkedbox.innerHTML = /** icon svg */ `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path 
                 d="M16.8 8.40002L9.64043 15.6L7.19995 13.1457" 
                 stroke="black" stroke-width="2" stroke-linecap="roun stroke-linejoin="round"
