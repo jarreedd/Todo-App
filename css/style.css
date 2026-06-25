@@ -11,6 +11,10 @@
     cursor: auto;
 }
 
+body{
+    height: 100dvh;
+}
+
 .btn {
     border: none;
     border-radius: 2px;
