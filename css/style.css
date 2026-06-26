@@ -89,16 +89,17 @@ body {
 
     p{
         color:#b4b4b4;
-        font-size: 0.8rem;
-        margin-top: auto;
+        position: absolute;
+        z-index: 1;
+        display: none;
     }
 
     h1 {
         color: #efefef;
-        font-size: 2rem;
+        font-size: 1.75rem;
         line-height: 1;
         display: inline-block;
-        grid-row: 2 / 3;
+        grid-row: 1 / 2;
     }
 
     .account_btn {
@@ -118,7 +119,6 @@ body {
     }
 
     .sort_form {
-        font-size: .9rem;
         grid-row: 2/3;
         grid-column: 3/4;
         height: 100%;
@@ -126,9 +126,9 @@ body {
         gap: 0.5rem;
         align-items: end;
         margin-left: auto;
-        padding: 0;
         
         .sort_label {
+            font-size: 0.9rem;
             color: #efefef;
         }
 
@@ -136,7 +136,7 @@ body {
             border: none;
             outline: none;
             border-radius: 2px;
-            padding: 2px 8px;
+            padding: 2px;
         }
 
     }
@@ -250,13 +250,11 @@ body {
     overflow-y: auto;
 
     .task {
-        margin: 8px;
         position: relative;
+        margin: 8px;
         height: 28px;
         display: grid;
-        /* grid-template-columns: 27px calc(100% - 87px) 30px 30px; */
-        grid-template-columns: 27px calc(100% - 57px) 30px;
-        align-items: center;
+        grid-template-columns: 25px calc(100% - 55px) 30px;
 
 
         [type="checkbox"] {
@@ -280,9 +278,11 @@ body {
         }
 
         .task_text {
-            font-size: 18px;
+            font-size: 16px;
             padding-left: 4px;
+            white-space: nowrap;
             overflow: hidden;
+            text-overflow: ellipsis;
             position: relative;
 
         }
@@ -373,8 +373,20 @@ body {
 
 
 
-/* @media (min-width: 376px) {
-    form {
-        flex-direction: row;
+@media (min-width: 425px) {
+    .main_header {
+        p{
+            font-size: 0.8rem;
+            margin-top: .5rem;
+            position: absolute;
+            z-index: 1;
+            display: inline;
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            grid-row: 2 / 3;
+            line-height: .8;
+        }
     }
-} */
+}
