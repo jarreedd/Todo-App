@@ -14,19 +14,29 @@
 
 <body>
     <header class="main_header header" id="main_header">
-        <p>What tasks do you have</p>
-        <h1>To-do</h1>
+        <button class="toggle-menu_btn icon_btn" id="toggle-menu_btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <p class="subheading">What tasks do you have</p>
+        <h1 class="branding">To-do</h1>
 
         <button class="account_btn icon_btn" id="account_btn">
             <i class="fa-regular fa-circle-user"></i>
         </button>
     </header>
 
+    <div class="menu_backdrop" id="menu_backdrop"></div>
+    <div class="menu_tab" id="menu_tab">
+        <button class="close_menu_btn icon_btn" id="close_menu_btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
     <ul class="tasks-list">
     </ul>
 
-    <div class="backdrop" id="backdrop"></div>
-
+    <div class="add_backdrop" id="add_backdrop"></div>
     <div class="add_tab" id="add_tab">
         <button class="toggle_btn icon_btn" id="toggle_btn">
             <i class="fa fa-plus"></i>

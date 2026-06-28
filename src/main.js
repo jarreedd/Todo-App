@@ -7,6 +7,7 @@ import {
 	createGrabIconElement,
 } from "./task.js";
 import { sort, createSortBtnElement } from "../utils/sort.js";
+import "./menu.js";
 
 /**
  * Updates the task list by optionally replacing the task data and rerendering the task list.
@@ -59,7 +60,7 @@ function taskClickHandler(event) {
 }
 
 function toggleAddTab(event) {
-	html.main.backdrop.classList.toggle("active");
+	html.add.backdrop.classList.toggle("active");
 	html.add.tab.classList.toggle("active");
 	html.add.form.classList.toggle("active");
 }
@@ -118,7 +119,7 @@ window.addEventListener("load", (event) => {
 	html.tasks.list.addEventListener("click", taskClickHandler);
 	html.add.toggle.addEventListener("click", toggleAddTab);
 	html.add.button.cancel.addEventListener("click", toggleAddTab);
-	html.main.backdrop.addEventListener("click", toggleAddTab);
+	html.add.backdrop.addEventListener("click", toggleAddTab);
 	html.tasks.list.addEventListener("mousedown", mouseDownHandler);
 	document.addEventListener("mouseup", mouseUpHandler);
 	document.addEventListener("submit", submitHandler);
