@@ -15,12 +15,18 @@ export let state = {
 export const html = {
 	main: {
 		header: document.getElementById("main_header"),
-		backdrop: document.getElementById("backdrop"),
+	},
+	menu: {
+		backdrop: document.getElementById("menu_backdrop"),
+		tab: document.getElementById("menu_tab"),
+		toggle: document.getElementById("toggle-menu_btn"),
+		close: document.getElementById("close_menu_btn"),
 	},
 	tasks: {
 		list: document.querySelector(".tasks-list"),
 	},
 	add: {
+		backdrop: document.getElementById("add_backdrop"),
 		tab: document.getElementById("add_tab"),
 		toggle: document.getElementById("toggle_btn"),
 		form: document.getElementById("add_form"),

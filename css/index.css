@@ -1,0 +1,387 @@
+body {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+}
+
+.main_header {
+    width: 100%;
+    height: 80px;
+    background-color: #808080;
+    padding: .5rem ;
+    display: grid;
+    column-gap: .5rem;
+    grid-template-columns: 1.75rem max-content auto;
+    grid-template-rows: min-content 1fr;
+    grid-template-areas:    "mtg todo acc"
+                            "sort sort sort";
+
+    .toggle-menu_btn {
+        grid-area: mtg;
+        height: 1.75rem;
+        aspect-ratio: 1;
+        color: #ffffffbf;
+        margin-right: .5rem;
+    }
+
+    .subheading {
+        display: none;
+    }
+
+    .branding {
+        grid-area: todo;
+        color: #efefef;
+        font-size: 1.75rem;
+        line-height: 1;
+        display: inline;
+    }
+
+    .account_btn {
+        grid-area: acc;
+        color: #ffffffbf;
+        margin-left: auto;
+    }
+
+    .sort_btn {
+        grid-area: sort;
+        height: min-content;
+        width: min-content;
+        align-self: end;
+        justify-self: end;
+    }
+
+    .sort_form {
+        grid-area: sort;
+        align-self: end;
+        justify-self: end;
+
+        display: flex;
+        gap: 0.5rem;
+        align-items: end;
+        
+        .sort_label {
+            font-size: 0.9rem;
+            color: #efefef;
+
+        }
+
+        .sort_options {
+            border: none;
+            outline: none;
+            border-radius: 2px;
+            padding: 2px;
+        }
+    }
+}
+
+
+.menu_backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+.menu_backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+.menu_tab {
+    z-index: 4;
+    position: absolute;
+    background-color: #ffffff;
+    height: 100dvh;
+    width: 12rem;
+    left: -12rem;
+    border-radius: 0 .25rem .25rem 0;
+    transition: all 0.3s;
+
+    .close_menu_btn:hover {
+        i {
+            color: var(--dark-grey-800-color);
+        }
+    }
+}
+.menu_tab.active {
+    left: 0;
+}
+
+
+.tasks-list {
+    list-style: none;
+    max-width: 500px;
+    height: 100%;
+    padding-bottom: 3.25rem;
+    overflow-y: auto;
+
+    .task {
+        position: relative;
+        margin: 8px;
+        height: 28px;
+        display: grid;
+        grid-template-columns: 25px calc(100% - 55px) 30px;
+
+        [type="checkbox"] {
+            display: none;
+        }
+
+        .custom_checkedbox{
+            border: 2px solid #808080;
+            border-radius: 2px;
+            height: 25px;
+            aspect-ratio: 1;
+
+            svg {
+                height: 100%;
+                width: 100%;
+
+                path {
+                    stroke: transparent;
+                }
+            }
+        }
+
+        .task_text {
+            font-size: 16px;
+            color: var(--dark-grey-800-color);
+            padding-left: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: relative;
+
+        }
+
+        input[type="checkbox"]:checked ~ .custom_checkedbox svg path {
+            stroke: #808080;
+        }
+
+        input[type="checkbox"]:checked ~ .task_text {
+            text-decoration: line-through;
+            color: #808080;
+        }
+
+        .options_btn {
+            display: none;
+            height: 100%;
+        }
+        .options_btn:hover > svg path{
+            fill: #a3a3a3;
+        }
+
+        .grab-icon {
+        width: 24px;
+        margin-left: 6px;
+        }
+
+        .grab-icon:hover {
+            cursor: grab;
+        }
+        
+    }
+
+    .task:hover > .options_btn {
+        display: inline-block;
+    }
+
+    .task_order {
+        display: block;
+        border: none;
+        border-radius: 2px;
+        background-color: #bfbfbf;
+        color: #ffffff;
+        padding: 1px 0 1px 8px;
+    }
+    .task_order.dragging {
+        border: 2px solid rgb(0, 0, 0);
+        opacity: 1;
+    }
+
+    .task_order.over {
+        background-color: #6d6d6d;
+    }
+}
+
+.add_backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+.add_backdrop.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.add_tab {
+    background-color: #bfbfbf;
+    position: fixed;
+    z-index: 2;
+    bottom: -100px;
+    width: 100%;
+    transition: all 0.3s;
+
+    .toggle_btn {
+        position: relative;
+        justify-self: end;
+        top: 0;
+        background-color: #808080;
+        color: #ffffff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        width: 1.75rem;
+        aspect-ratio: 1;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.75rem;
+        transition: all 0.3s;
+        i {
+        color: #fff;
+        }
+    }
+    .toggle_btn:hover {
+        background-color: #a3a3a3;
+    }
+    .toggle_btn:active {
+        transform: scale(.98);
+    }
+
+    .add_form {
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    padding: 1rem;
+    margin: auto;
+    display:grid;
+    gap: .5rem;
+    grid-template-rows: repeat(2, 1fr);
+
+        input {
+            width: 100%;
+            height: 2rem;
+            padding-left: 0.5rem;
+            font-size: 16px;
+        }
+
+        .buttons {
+            .btn {
+                padding-right: 1rem;
+                padding-left: 1rem;
+                height: 2rem;
+                font-size: 1.125rem;
+                width: max-content;
+            }
+        }
+    }
+}
+.add_tab.active {
+    background-color: #fff;
+    bottom: 0px;
+
+    .toggle_btn {
+        transform: rotate(45deg);
+    }
+}
+
+
+
+
+@media (min-width: 425px) {
+    .main_header {
+        grid-template-areas:    "mtg subh acc"
+                                "todo todo sort";
+        
+        .toggle-menu_btn {
+            grid-area: mtg;
+        }
+
+        .subheading {
+            grid-area: subh;
+            color:#b4b4b4;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline;
+            width: max-content;
+            align-self: center;
+        }
+
+        .account_btn {
+            grid-area: acc;
+        }
+
+        .branding {
+            grid-area: todo;
+            grid-column: 2 / 3;
+            font-size: 2.75rem;
+            line-height: .8;
+            width: max-content;
+        }
+
+        .sort_btn {
+        grid-area: sort;
+        }
+    }
+
+    .tasks-list {
+        .task_text {
+            font-weight: 500;
+        }
+    }
+}
+
+@media (min-width: 700px) {
+    body {
+        grid-template-rows: min-content 1fr;
+        grid-template-columns: min-content 1fr;
+    }
+
+    .main_header {
+        grid-column: 1 / 3;
+        grid-template-columns: max-content auto;
+        grid-template-rows: min-content 1fr;
+        grid-template-areas:    "subh acc"
+                                "todo sort";
+
+        .toggle-menu_btn {
+            display: none;
+        }
+
+        .branding {
+            grid-column: 1 / 2;
+        }
+    }
+
+    .menu_tab {
+        z-index: 1;
+        position: relative;
+        background-color: var(--dark-grey-800-color);
+        height: calc(100dvh - 80px - 3.25rem);
+        left: 0;
+        border-radius:0;
+        transition: all 0s;
+
+        .close_menu_btn {
+            display: none;
+        }
+    }
+
+    .menu_backdrop {
+        display: none;
+    }
+
+}
