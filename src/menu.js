@@ -5,6 +5,8 @@ function toggleMenu(event) {
 	html.menu.backdrop.classList.toggle("active");
 }
 
-html.menu.toggle.addEventListener("click", toggleMenu);
-html.menu.close.addEventListener("click", toggleMenu);
-html.menu.backdrop.addEventListener("click", toggleMenu);
+if (window.location.pathname === "/") {
+	html.menu.toggle.addEventListener("click", toggleMenu);
+	html.menu.close.addEventListener("click", toggleMenu);
+	html.menu.backdrop.addEventListener("click", toggleMenu);
+}
